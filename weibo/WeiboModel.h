@@ -2,7 +2,6 @@
 //  WeiboModel.h
 //  WXWeibo
 //
-//  Created by wei.chen on 13-1-22.
 //
 
 #import "BaseModel.h"

@@ -2,7 +2,6 @@
 //  WXBaseModel.m
 //  MTWeibo
 //
-//  Created by wei.chen on 11-9-22.
 //
 
 #import "BaseModel.h"
