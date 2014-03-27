@@ -18,6 +18,7 @@
 
 -(void)pullUp:(BaseTableView *)tableView;  //加载更多
 
+- (void)gotoDetail;  //选中
 
 @end
 

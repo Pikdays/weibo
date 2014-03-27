@@ -126,7 +126,16 @@
 
 
 }
-
+#pragma mark UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if ([self.eventDelegate respondsToSelector:@selector(gotoDetail)]) {
+        [self.eventDelegate gotoDetail];
+        
+    }
+    
+}
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

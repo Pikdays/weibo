@@ -12,6 +12,7 @@
 #import "WeiboModel.h"
 #import "UiFactory.h"
 #import "MainViewController.h"
+#import "DetailViewController.h"
 
 @interface HomeViewController ()
 
@@ -343,6 +344,11 @@
 
 }
 
-
+- (void)gotoDetail
+{
+    DetailViewController * detail=[[DetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:detail animated:YES];
+}
 
 @end
