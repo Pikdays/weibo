@@ -130,8 +130,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if ([self.eventDelegate respondsToSelector:@selector(gotoDetail)]) {
-        [self.eventDelegate gotoDetail];
+    if ([self.eventDelegate respondsToSelector:@selector(gotoDetail:didSelectRowAtIndexPath:)]) {
+        [self.eventDelegate gotoDetail:tableView didSelectRowAtIndexPath:indexPath];
         
     }
     

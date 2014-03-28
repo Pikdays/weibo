@@ -7,6 +7,9 @@
 //
 
 #import "DetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIImageView+WebCache.h"
+#import "WeiboView.h"
 
 @interface DetailViewController ()
 
@@ -40,13 +43,57 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"detail");
     [self _initView];
 
 }
 
 -(void)_initView
 {
+    
+    UIView * headView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 0)];
+    
+    headView.backgroundColor=[UIColor clearColor];
+    
+    [headView addSubview:_headBarView];
+    
+    _userImageView.layer.cornerRadius=5;
+    _userImageView.layer.masksToBounds=YES;
+    
+    
+    NSString * imagePath=_weiboModel.user.profile_image_url;
+    
+    if (imagePath !=nil && ![@"" isEqualToString:imagePath]) {
+        
+        
+        [_userImageView setImageWithURL:[NSURL URLWithString:imagePath]];
+    }
+    
+    
+    _nickNameLabel.text=_weiboModel.user.screen_name;
 
+    
+    headView.height+=60;
+    
+    float h=[WeiboView getWeiboViewHeight:_weiboModel isRepost:NO isDetail:YES];
+    
+    
+    WeiboView * weiView=[[WeiboView alloc]initWithFrame:CGRectMake(10, _headBarView.bottom+10, ScreenWidth-20, h)];
+    
+    weiView.isDetail=YES;
+    
+    weiView.weiboModel=_weiboModel;
+    
+    
+    headView.height+=h+10;
+
+    
+    [headView addSubview:weiView];
+    
+    
+    self.tableView.tableHeaderView=headView;
+    
 
 }
 

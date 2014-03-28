@@ -24,8 +24,13 @@
     if (self) {
         // Initialization code
         [self init_view];
-        _parseText=[NSMutableString string];
         
+       // _parseText=[NSMutableString string];
+        
+        //注意要持有
+        
+        _parseText=[[NSMutableString alloc]init];
+
     }
     return self;
 }
@@ -124,11 +129,14 @@
     _text.text=_parseText;
     
 
-    _text.height=_text.optimumSize.height;
     
     //获取字体大小
     float fontSize = [WeiboView getFontSize:self.isDetail isRepost:self.isRePost];
+    
     _text.font = [UIFont systemFontOfSize:fontSize];
+    
+    _text.height=_text.optimumSize.height;
+
     
     WeiboModel * rePostModel=_weiboModel.relWeibo;
     
@@ -138,6 +146,7 @@
         
         //计算转发微博视图的高度
         float height = [WeiboView getWeiboViewHeight:rePostModel isRepost:YES isDetail:self.isDetail];
+        
         _repostView.frame = CGRectMake(0, _text.bottom, self.width, height);
 
         _repostView.hidden=NO;
@@ -147,21 +156,54 @@
     }
     //微博图片
     
-    NSString * imagePath=_weiboModel.thumbnailImage;
-    
-    if (imagePath !=nil && ![@"" isEqualToString:imagePath]) {
-        _image.image=[UIImage imageNamed:imagePath];
+    if(self.isDetail){
+        
+        NSString * imagePath=_weiboModel.bmiddleImage;
+        
+        
+        NSLog(@"imagePath--%@",imagePath);
 
-        _image.hidden=NO;
         
-        _image.frame=CGRectMake(10, _text.bottom+20, 70, 80);
-        
-        [_image setImageWithURL:[NSURL URLWithString:imagePath]];
-        
-    }else{
+        if (imagePath !=nil && ![@"" isEqualToString:imagePath]) {
+            
+            
+            _image.image=[UIImage imageNamed:imagePath];
+            
+            _image.hidden=NO;
+            
+            _image.frame=CGRectMake(10, _text.bottom+20, 280, 200);
+            
+            [_image setImageWithURL:[NSURL URLWithString:imagePath]];
+            
+        }else{
+            
+            _image.hidden=YES;
+        }
     
-        _image.hidden=YES;
+    
+    }else{
+        
+        NSString * imagePath=_weiboModel.thumbnailImage;
+        
+        if (imagePath !=nil && ![@"" isEqualToString:imagePath]) {
+            _image.image=[UIImage imageNamed:imagePath];
+            
+            _image.hidden=NO;
+            
+            _image.frame=CGRectMake(10, _text.bottom+20, 70, 80);
+            
+            [_image setImageWithURL:[NSURL URLWithString:imagePath]];
+            
+        }else{
+            
+            _image.hidden=YES;
+        }
+    
+    
+    
     }
+    
+
     
 
     //----------------转发的微博视图背景_repostBackView---------------
@@ -241,6 +283,7 @@
         textLabel.width = kWeibo_Width_List;
     }
     
+    
     if (isRepost) {
         textLabel.width-=20;
     }
@@ -249,11 +292,28 @@
     
     height += textLabel.optimumSize.height;
     
+    
+    //NSLog(@"textLabel--height%f",textLabel.optimumSize.height);
+    
     //--------------------计算微博图片的高度------------------------
-    NSString *thumbnailImage = weiboModel.thumbnailImage;
-    if (thumbnailImage != nil && ![@"" isEqualToString:thumbnailImage]) {
-        height += (80+10+20);
+    
+    if(isDetail){
+    
+        NSString *bmiddleImage = weiboModel.bmiddleImage;
+        if (bmiddleImage != nil && ![@"" isEqualToString:bmiddleImage]) {
+            height += (200+10+20);
+        }
+    
+    }else{
+    
+        NSString *thumbnailImage = weiboModel.thumbnailImage;
+        if (thumbnailImage != nil && ![@"" isEqualToString:thumbnailImage]) {
+            height += (80+10+20);
+        }
+    
     }
+    
+   
     
     //--------------------计算转发微博视图的高度------------------------
     //转发的微博

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8201C5D318E5935100D5F718 /* CommontModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201C5D218E5935100D5F718 /* CommontModel.m */; };
 		82074E7118E274F900CBD1EB /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 82074E6918E274F900CBD1EB /* blackArrow.png */; };
 		82074E7218E274F900CBD1EB /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82074E6A18E274F900CBD1EB /* blackArrow@2x.png */; };
 		82074E7318E274F900CBD1EB /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 82074E6B18E274F900CBD1EB /* blueArrow.png */; };
@@ -22,6 +23,9 @@
 		820DE62018E4541200AE680B /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 820DE61F18E4541200AE680B /* 37x-Checkmark.png */; };
 		820DE62918E46D9C00AE680B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820DE62718E46D9C00AE680B /* DetailViewController.m */; };
 		820DE62A18E46D9C00AE680B /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820DE62818E46D9C00AE680B /* DetailViewController.xib */; };
+		8217535D18E54BEB004E295C /* CommontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8217535C18E54BEB004E295C /* CommontCell.m */; };
+		8217536018E54C65004E295C /* CommontTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8217535F18E54C65004E295C /* CommontTableView.m */; };
+		8217536218E54CB7004E295C /* CommontCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8217536118E54CB7004E295C /* CommontCell.xib */; };
 		821E565E18D5528900F4DB38 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 821E565518D5528900F4DB38 /* SinaWeibo.bundle */; };
 		821E565F18D5528900F4DB38 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 821E565718D5528900F4DB38 /* SinaWeibo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		821E566018D5528900F4DB38 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 821E565918D5528900F4DB38 /* SinaWeiboAuthorizeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -565,6 +569,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8201C5D118E5935100D5F718 /* CommontModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommontModel.h; sourceTree = "<group>"; };
+		8201C5D218E5935100D5F718 /* CommontModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommontModel.m; sourceTree = "<group>"; };
 		82074E6918E274F900CBD1EB /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
 		82074E6A18E274F900CBD1EB /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
 		82074E6B18E274F900CBD1EB /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
@@ -587,6 +593,11 @@
 		820DE62618E46D9C00AE680B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		820DE62718E46D9C00AE680B /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		820DE62818E46D9C00AE680B /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		8217535B18E54BEB004E295C /* CommontCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommontCell.h; sourceTree = "<group>"; };
+		8217535C18E54BEB004E295C /* CommontCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommontCell.m; sourceTree = "<group>"; };
+		8217535E18E54C65004E295C /* CommontTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommontTableView.h; sourceTree = "<group>"; };
+		8217535F18E54C65004E295C /* CommontTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommontTableView.m; sourceTree = "<group>"; };
+		8217536118E54CB7004E295C /* CommontCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommontCell.xib; sourceTree = "<group>"; };
 		821E565518D5528900F4DB38 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
 		821E565618D5528900F4DB38 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
 		821E565718D5528900F4DB38 /* SinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeibo.m; sourceTree = "<group>"; };
@@ -1381,6 +1392,8 @@
 				8220366618D75EA10018FD60 /* WeiboModel.m */,
 				8220366718D75EA10018FD60 /* UserModel.h */,
 				8220366818D75EA10018FD60 /* UserModel.m */,
+				8201C5D118E5935100D5F718 /* CommontModel.h */,
+				8201C5D218E5935100D5F718 /* CommontModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1440,6 +1453,11 @@
 				82096B3C18D9D2ED0009B64C /* WeiboView.m */,
 				82F8D78418DF281C0016B001 /* WeiboTableView.h */,
 				82F8D78518DF281C0016B001 /* WeiboTableView.m */,
+				8217535B18E54BEB004E295C /* CommontCell.h */,
+				8217535C18E54BEB004E295C /* CommontCell.m */,
+				8217535E18E54C65004E295C /* CommontTableView.h */,
+				8217535F18E54C65004E295C /* CommontTableView.m */,
+				8217536118E54CB7004E295C /* CommontCell.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2106,6 +2124,7 @@
 				829FA3EF18D4C30400761C70 /* 021.gif in Resources */,
 				829FA49C18D4C30400761C70 /* 078@2x.png in Resources */,
 				829FA4D818D4C30400761C70 /* 098@2x.png in Resources */,
+				8217536218E54CB7004E295C /* CommontCell.xib in Resources */,
 				829FA39A18D4C30400761C70 /* compose_keyboardbutton_background.png in Resources */,
 				829FA3A918D4C30400761C70 /* compose_savebutton_background@2x.png in Resources */,
 				829FA52718D4C30400761C70 /* statusdetail_header_separator@2x.png in Resources */,
@@ -2568,6 +2587,7 @@
 				829FA15B18D4B0A200761C70 /* SDWebImageDownloader.m in Sources */,
 				829FA19018D4B6F100761C70 /* MainViewController.m in Sources */,
 				829FA1AA18D4BBA600761C70 /* ProfileViewController.m in Sources */,
+				8201C5D318E5935100D5F718 /* CommontModel.m in Sources */,
 				829FA15E18D4B0A200761C70 /* UIImageView+WebCache.m in Sources */,
 				82074E7518E274F900CBD1EB /* EGORefreshTableHeaderView.m in Sources */,
 				82096B3D18D9D2ED0009B64C /* WeiboView.m in Sources */,
@@ -2581,6 +2601,7 @@
 				829FA15D18D4B0A200761C70 /* UIButton+WebCache.m in Sources */,
 				829FA19418D4B7C700761C70 /* BaseViewController.m in Sources */,
 				821E585618D599C400F4DB38 /* ThemeManager.m in Sources */,
+				8217535D18E54BEB004E295C /* CommontCell.m in Sources */,
 				829FA11918D4AD6100761C70 /* MYAppDelegate.m in Sources */,
 				821E586318D5DC5C00F4DB38 /* UiFactory.m in Sources */,
 				829FA14318D4AED000761C70 /* UIViewExt.m in Sources */,
@@ -2594,6 +2615,7 @@
 				821E586618D5EA2000F4DB38 /* ThemeImageView.m in Sources */,
 				829FA15C18D4B0A200761C70 /* SDWebImageManager.m in Sources */,
 				829FA19718D4B86900761C70 /* BaseNavigationController.m in Sources */,
+				8217536018E54C65004E295C /* CommontTableView.m in Sources */,
 				821E585B18D5AD4600F4DB38 /* ThemeButton.m in Sources */,
 				829FA14218D4AED000761C70 /* UIUtils.m in Sources */,
 				8220366918D75EA10018FD60 /* WeiboModel.m in Sources */,

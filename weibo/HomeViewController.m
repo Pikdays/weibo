@@ -344,9 +344,12 @@
 
 }
 
-- (void)gotoDetail
+- (void)gotoDetail:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     DetailViewController * detail=[[DetailViewController alloc]init];
+    
+    detail.weiboModel=[self.weibos objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:detail animated:YES];
 }
