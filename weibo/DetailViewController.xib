@@ -7,7 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController">
             <connections>
+                <outlet property="headBarView" destination="k8Q-e1-OvV" id="hRg-sN-rvY"/>
+                <outlet property="nickNameLabel" destination="O3y-XM-n1H" id="s7S-MG-6ZI"/>
                 <outlet property="tableView" destination="rV5-mJ-ZsV" id="023-hc-Yzb"/>
+                <outlet property="userImageView" destination="AVN-Zi-9SA" id="1Xe-L5-kN5"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -26,5 +29,30 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
         </view>
+        <view contentMode="scaleToFill" id="k8Q-e1-OvV">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="AVN-Zi-9SA">
+                    <rect key="frame" x="9" y="10" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O3y-XM-n1H">
+                    <rect key="frame" x="71" y="19" width="110" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_detail.png" id="cU5-Et-v3z">
+                    <rect key="frame" x="300" y="26" width="8" height="8"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+        </view>
     </objects>
+    <resources>
+        <image name="icon_detail.png" width="6" height="10"/>
+    </resources>
 </document>

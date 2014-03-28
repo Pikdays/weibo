@@ -20,6 +20,8 @@
 		82099B6718E0890F001973E0 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82099B6518E0890F001973E0 /* Icon@2x.png */; };
 		820DE61E18E443EB00AE680B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 820DE61D18E443EB00AE680B /* MBProgressHUD.m */; };
 		820DE62018E4541200AE680B /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 820DE61F18E4541200AE680B /* 37x-Checkmark.png */; };
+		820DE62918E46D9C00AE680B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820DE62718E46D9C00AE680B /* DetailViewController.m */; };
+		820DE62A18E46D9C00AE680B /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820DE62818E46D9C00AE680B /* DetailViewController.xib */; };
 		821E565E18D5528900F4DB38 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 821E565518D5528900F4DB38 /* SinaWeibo.bundle */; };
 		821E565F18D5528900F4DB38 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 821E565718D5528900F4DB38 /* SinaWeibo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		821E566018D5528900F4DB38 /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 821E565918D5528900F4DB38 /* SinaWeiboAuthorizeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -582,6 +584,9 @@
 		820DE61C18E443EB00AE680B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		820DE61D18E443EB00AE680B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		820DE61F18E4541200AE680B /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		820DE62618E46D9C00AE680B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		820DE62718E46D9C00AE680B /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		820DE62818E46D9C00AE680B /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		821E565518D5528900F4DB38 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
 		821E565618D5528900F4DB38 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
 		821E565718D5528900F4DB38 /* SinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeibo.m; sourceTree = "<group>"; };
@@ -1417,6 +1422,9 @@
 		829FA19818D4B8FF00761C70 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				820DE62618E46D9C00AE680B /* DetailViewController.h */,
+				820DE62718E46D9C00AE680B /* DetailViewController.m */,
+				820DE62818E46D9C00AE680B /* DetailViewController.xib */,
 				829FA19D18D4B9F300761C70 /* HomeViewController.h */,
 				829FA19E18D4B9F300761C70 /* HomeViewController.m */,
 				829FA19F18D4B9F300761C70 /* HomeViewController.xib */,
@@ -2077,6 +2085,7 @@
 				829FA51218D4C30400761C70 /* newbar_icon_2.png in Resources */,
 				829FA47818D4C30400761C70 /* 066@2x.png in Resources */,
 				829FA45B18D4C30400761C70 /* 057.gif in Resources */,
+				820DE62A18E46D9C00AE680B /* DetailViewController.xib in Resources */,
 				829FA4D118D4C30400761C70 /* 096.png in Resources */,
 				829FA43C18D4C30400761C70 /* 046@2x.png in Resources */,
 				829FA3E318D4C30400761C70 /* 017.gif in Resources */,
@@ -2554,6 +2563,7 @@
 				82F8D78618DF281C0016B001 /* WeiboTableView.m in Sources */,
 				829FA18618D4B1B100761C70 /* DDMenuController.m in Sources */,
 				82F8D78318DF24960016B001 /* BaseTableView.m in Sources */,
+				820DE62918E46D9C00AE680B /* DetailViewController.m in Sources */,
 				829FA1B418D4BC6900761C70 /* MoreViewController.m in Sources */,
 				829FA15B18D4B0A200761C70 /* SDWebImageDownloader.m in Sources */,
 				829FA19018D4B6F100761C70 /* MainViewController.m in Sources */,
