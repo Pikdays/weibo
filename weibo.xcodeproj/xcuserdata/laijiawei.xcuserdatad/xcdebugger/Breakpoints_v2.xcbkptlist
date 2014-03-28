@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "weibo/HomeViewController.m"
-            timestampString = "417623579.606406"
+            timestampString = "417712371.235822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "-request:didFinishLoadingWithResult:"
             landmarkType = "5">
          </BreakpointContent>
@@ -269,6 +269,52 @@
             endingLineNumber = "155"
             landmarkName = "-request:didFinishLoadingWithResult:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "weibo/CommentCell.h"
+            timestampString = "417708081.507519"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "nickName"
+            landmarkType = "19">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CommentCell nickName]"
+                  moduleName = "&#24494;&#21338;"
+                  urlString = "file:///Users/laijiawei/weibo/weibo/CommentCell.h"
+                  timestampString = "417708081.523883"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CommentCell setNickName:]"
+                  moduleName = "&#24494;&#21338;"
+                  urlString = "file:///Users/laijiawei/weibo/weibo/CommentCell.h"
+                  timestampString = "417708081.52414"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

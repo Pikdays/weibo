@@ -8,6 +8,6 @@
 
 #import "BaseTableView.h"
 
-@interface CommentTableView : BaseTableView
+@interface CommentTableView : BaseTableView<UITableViewDataSource,UITableViewDelegate>
 
 @end

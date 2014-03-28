@@ -7,6 +7,7 @@
 //
 
 #import "CommentTableView.h"
+#import "CommentCell.h"
 
 @implementation CommentTableView
 
@@ -19,13 +20,38 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Drawing code
-}
-*/
 
+    static NSString * cellid=@"celleid";
+    
+    CommentCell * cell=[tableView dequeueReusableCellWithIdentifier:cellid];
+    
+    
+    if (cell==nil) {
+        
+        cell=[[[NSBundle mainBundle]loadNibNamed:@"CommentCell" owner:self options:nil]lastObject];
+        
+    }
+    
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    
+    WeiboModel *weibo = [self.data objectAtIndex:indexPath.row];
+    
+    cell.commentModel=weibo;
+    
+    
+    return cell;
+    
+
+}
+
+-(float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+
+     return   [CommentCell getCommentcellViewHeight:[self.data objectAtIndex:indexPath.row]]+40;
+
+
+}
 @end

@@ -39,6 +39,8 @@
 
 @property(nonatomic,assign)BOOL refreshHeader;  //是否需要下拉
 
+@property(nonatomic,assign)BOOL showMore;  //是否显示更多
+
 @property(nonatomic,assign)BOOL islast;  //是否是最后一页
 
 

@@ -17,7 +17,7 @@
 //"mid": "5610221544300749636",
 
 @interface CommentModel : BaseModel
-@property(nonatomic,copy)NSString           *create_at;
+@property(nonatomic,copy)NSString           *created_at;
 @property(nonatomic,copy)NSNumber           *id;
 @property(nonatomic,copy)NSString           *text;
 @property(nonatomic,copy)NSString           *source;

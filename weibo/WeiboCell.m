@@ -177,7 +177,8 @@
     //评论数
     if (_weiboModel.commentsCount!=nil) {
         _commentLabel.hidden=NO;
-        _commentLabel.text=[NSString stringWithFormat:@"评论%@",_weiboModel.repostsCount];
+        _commentLabel.text=[NSString stringWithFormat:@"评论%@",_weiboModel.commentsCount];
+        
         _commentLabel.frame=CGRectMake(_repostCount.right+8,_repostCount.top, 100, _repostCount.height);
         [_commentLabel sizeToFit];
         

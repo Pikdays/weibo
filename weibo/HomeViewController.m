@@ -181,13 +181,13 @@
     }
     
     
-    if (statues.count<=5) {
+    if (statues.count<[WeiboSize intValue]) {
     
-        self.tableView.islast=NO;
+        self.tableView.islast=YES;
         
     }else{
     
-        self.tableView.islast=YES;
+        self.tableView.islast=NO;
 
     
     }
@@ -205,28 +205,36 @@
         
     }
     
+    //下拉
     if (_isrefresh) {
         
         [weibos addObjectsFromArray:self.weibos];
         
         [self.tableView doneLoadingTableViewData];
+        
+        self.weibos=weibos;
     }
     
-    
+    //更多
     if (_ismore) {
         
         
-        //[_tableView stopload];
+        [_tableView stopload];
         
         [self.weibos addObjectsFromArray:weibos];
         
         [self.tableView doneLoadingTableViewData];
+        
     }
     
+    //普通加载
     
-    self.weibos=weibos;
+    if(!_ismore&&!_isrefresh)      self.weibos=weibos;
+
+
     
-    self.tableView.data=weibos;
+    
+    self.tableView.data=self.weibos;
 
     //记得刷新
     [self.tableView reloadData];
@@ -249,11 +257,6 @@
         [self.sinaweibo requestWithURL:@"statuses/home_timeline.json" params:params httpMethod:@"GET" delegate:self];
         
     }
-    
-//    else{
-//    
-//        [self bindAction:nil];
-//    }
 
 }
 
@@ -286,14 +289,7 @@
     
     _ismore=NO;
     
-    
 
-//    MainViewController * main= self.tabBarController;
-//    if (main.noread_count!=nil&&[main.noread_count intValue]>0&&[main.noread_count intValue]<=[WeiboSize intValue]) {
-//        
-//        count=[main.noread_count stringValue];
-//
-//    }
     
     
     NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:WeiboSize forKey:@"count"];
@@ -311,9 +307,6 @@
 -(void)pullUp:(BaseTableView *)tableView
 {
     
-    NSLog(@"pullup");
-    
-    NSLog(@"downId%@",self.downId);
     _ismore=YES;
     
     _isrefresh=NO;

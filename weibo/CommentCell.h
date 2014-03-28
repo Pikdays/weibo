@@ -18,5 +18,7 @@
 
 @property(retain,nonatomic)CommentModel * commentModel;
 
+//计数cell高度
++ (CGFloat)getCommentcellViewHeight:(CommentModel *)commentModel;
 
 @end

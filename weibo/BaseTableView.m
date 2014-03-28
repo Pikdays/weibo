@@ -126,6 +126,9 @@
 
 
 }
+
+
+
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -206,10 +209,14 @@
     //停止加载，弹回下拉
 	//[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
 	
-    if ([self.eventDelegate respondsToSelector:@selector(pullDown:)]) {
-        [self.eventDelegate pullDown:self];
-
+    if (_refreshHeader) {
+        if ([self.eventDelegate respondsToSelector:@selector(pullDown:)]) {
+            [self.eventDelegate pullDown:self];
+            
+        }
     }
+    
+   
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
