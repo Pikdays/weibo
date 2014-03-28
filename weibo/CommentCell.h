@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nickName;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
-@property(retain,nonatomic)RTLabel * _contentLabel;
+@property(retain,nonatomic)RTLabel * contentLabel;
 
 @property(retain,nonatomic)CommentModel * commentModel;
 

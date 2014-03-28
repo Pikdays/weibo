@@ -23,7 +23,13 @@
 -(void)awakeFromNib
 {
 
+    _contentLabel=[[RTLabel alloc]initWithFrame:CGRectMake(_userImageView.left+10, _nickName.bottom+5, 240, 10)];
+    _contentLabel.font=[UIFont systemFontOfSize:14.0f];
+    _contentLabel.delegate=self;
+    _contentLabel.linkAttributes=[NSDictionary dictionaryWithObject:@"blue" forKey:@"color"];
+    _contentLabel.selectedLinkAttributes=[NSDictionary dictionaryWithObject:@"darkGray" forKey:@"color"];
     
+    [self.contentView addSubview:_contentLabel];
 
 }
 

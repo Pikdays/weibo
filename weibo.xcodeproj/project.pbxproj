@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8201C5D318E5935100D5F718 /* CommontModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201C5D218E5935100D5F718 /* CommontModel.m */; };
+		8201C5D318E5935100D5F718 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8201C5D218E5935100D5F718 /* CommentModel.m */; };
 		82074E7118E274F900CBD1EB /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 82074E6918E274F900CBD1EB /* blackArrow.png */; };
 		82074E7218E274F900CBD1EB /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82074E6A18E274F900CBD1EB /* blackArrow@2x.png */; };
 		82074E7318E274F900CBD1EB /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 82074E6B18E274F900CBD1EB /* blueArrow.png */; };
@@ -570,7 +570,7 @@
 
 /* Begin PBXFileReference section */
 		8201C5D118E5935100D5F718 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
-		8201C5D218E5935100D5F718 /* CommontModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommontModel.m; sourceTree = "<group>"; };
+		8201C5D218E5935100D5F718 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		82074E6918E274F900CBD1EB /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
 		82074E6A18E274F900CBD1EB /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
 		82074E6B18E274F900CBD1EB /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
@@ -1393,7 +1393,7 @@
 				8220366718D75EA10018FD60 /* UserModel.h */,
 				8220366818D75EA10018FD60 /* UserModel.m */,
 				8201C5D118E5935100D5F718 /* CommentModel.h */,
-				8201C5D218E5935100D5F718 /* CommontModel.m */,
+				8201C5D218E5935100D5F718 /* CommentModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2587,7 +2587,7 @@
 				829FA15B18D4B0A200761C70 /* SDWebImageDownloader.m in Sources */,
 				829FA19018D4B6F100761C70 /* MainViewController.m in Sources */,
 				829FA1AA18D4BBA600761C70 /* ProfileViewController.m in Sources */,
-				8201C5D318E5935100D5F718 /* CommontModel.m in Sources */,
+				8201C5D318E5935100D5F718 /* CommentModel.m in Sources */,
 				829FA15E18D4B0A200761C70 /* UIImageView+WebCache.m in Sources */,
 				82074E7518E274F900CBD1EB /* EGORefreshTableHeaderView.m in Sources */,
 				82096B3D18D9D2ED0009B64C /* WeiboView.m in Sources */,
