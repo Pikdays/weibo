@@ -16,7 +16,7 @@
 //"source": "<a href="http://weibo.com" rel="nofollow">新浪微博</a>",
 //"mid": "5610221544300749636",
 
-@interface CommontModel : BaseModel
+@interface CommentModel : BaseModel
 @property(nonatomic,copy)NSString           *create_at;
 @property(nonatomic,copy)NSNumber           *id;
 @property(nonatomic,copy)NSString           *text;

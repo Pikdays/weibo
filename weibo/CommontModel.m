@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 laijiawei. All rights reserved.
 //
 
-#import "CommontModel.h"
+#import "CommentModel.h"
 
-@implementation CommontModel
+@implementation CommentModel
 
 - (void)setAttributes:(NSDictionary *)dataDic {
     //将字典数据根据映射关系填充到当前对象的属性上。

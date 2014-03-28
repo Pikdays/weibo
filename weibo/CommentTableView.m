@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 laijiawei. All rights reserved.
 //
 
-#import "CommontTableView.h"
+#import "CommentTableView.h"
 
-@implementation CommontTableView
+@implementation CommentTableView
 
 - (id)initWithFrame:(CGRect)frame  style:(UITableViewStyle)style
 {

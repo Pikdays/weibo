@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 laijiawei. All rights reserved.
 //
 
-#import "CommontCell.h"
+#import "CommentCell.h"
 
-@implementation CommontCell
+@implementation CommentCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

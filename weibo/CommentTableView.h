@@ -8,6 +8,6 @@
 
 #import "BaseTableView.h"
 
-@interface CommontTableView : BaseTableView
+@interface CommentTableView : BaseTableView
 
 @end
