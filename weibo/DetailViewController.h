@@ -1,7 +1,7 @@
 //
 //  DetailViewController.h
 //  weibo
-//
+//微博正文
 //  Created by laijiawei on 14-3-27.
 //  Copyright (c) 2014年 laijiawei. All rights reserved.
 //
