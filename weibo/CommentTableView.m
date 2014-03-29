@@ -54,4 +54,47 @@
 
 
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+
+    
+        UIView * view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.width, 40)];
+        
+        view.backgroundColor=[UIColor whiteColor];
+        
+        UILabel * label=[[UILabel alloc]initWithFrame:CGRectMake(10,10, 100, 20)];
+        
+        label.backgroundColor=[UIColor clearColor];
+        
+        label.textColor=[UIColor blueColor];
+        
+        
+        label.text=[NSString stringWithFormat:@"评论数:%d",[[_commentsdic objectForKey:@"total_number"] intValue]];
+        
+        
+        label.font=[UIFont systemFontOfSize:16.0f];
+        
+    
+      UIImageView * line=[[UIImageView alloc]initWithFrame:CGRectMake(0,39, tableView.width, 1)];
+    
+    
+      [line setImage:[UIImage imageNamed:@"userinfo_header_separator.png"]];
+    
+    [view addSubview:label];
+    [view addSubview:line];
+
+    
+        return view;
+
+
+}
+-(float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+
+    return 40;
+
+
+
+}
 @end

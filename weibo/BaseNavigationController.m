@@ -29,6 +29,22 @@
 {
     [super viewDidLoad];
     
+    UISwipeGestureRecognizer * swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(goleft:)];
+    swipe.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipe];
+}
+
+-(void)goleft:(UISwipeGestureRecognizer *)swipe
+{
+    
+    if (self.viewControllers.count>1) {
+        
+        if (swipe.direction==UISwipeGestureRecognizerDirectionRight) {
+            [self popViewControllerAnimated:YES];
+        }
+      
+    }
+
 }
 
 - (void)didReceiveMemoryWarning

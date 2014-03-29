@@ -65,6 +65,7 @@
     for (UIViewController * view in _views) {
         BaseNavigationController * nav=[[BaseNavigationController alloc]initWithRootViewController:view];
         [viewControllers addObject:nav];
+        nav.delegate=self;
     }
     
     self.viewControllers=viewControllers;
@@ -153,13 +154,12 @@
         _sliderView.left=x;
 
     }];
-    
-    NSLog(@"button.tag---------%d",button.tag);
+
 
     if (self.selectedIndex==button.tag&&button.tag==0) {
 
         HomeViewController * home=[_views objectAtIndex:0];
-        [home refreshWeibo];
+        [home refreshWeibo:[self.noread_count stringValue]];
     }
     self.selectedIndex=button.tag;
 
@@ -200,6 +200,8 @@
     NSLog(@"sinaweiboDidLogOut");
     //移除认证信息
  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAuthData"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 
 }
 - (void)sinaweiboLogInDidCancel:(SinaWeibo *)sinaweibo
@@ -213,8 +215,6 @@
 //更新未读数据
 -(void)loadNoReadData
 {
-    
-    NSLog(@"hello");
     
     MYAppDelegate *delegate = (MYAppDelegate *)[UIApplication sharedApplication].delegate;
     
@@ -236,12 +236,11 @@
     
     _noread_count=[statues objectForKey:@"status"];
     
+   // _noread_count=[[NSNumber alloc]initWithInt:55];
     
     [self loadNoReadView:_noread_count];
     
-    
-  
-    
+
 }
 //更新未读视图
 -(void)loadNoReadView:(NSNumber*)noread_count
@@ -289,6 +288,64 @@
         
     }
 
+
+
+}
+-(void)showtabbarView:(BOOL)show{
+
+    [UIView animateWithDuration:0.35 animations:^{
+    
+        if (show) {
+            _tabbarView.left=0;
+        }else{
+            _tabbarView.left=-ScreenWidth;
+
+        }
+        
+    
+    }];
+    
+    [self _resizeView:show];
+
+   
+
+}
+#pragma mark -UI
+
+//修改内容视图高度
+-(void)_resizeView:(BOOL) showtarbar
+{
+
+    for(UIView * view in self.view.subviews){
+    
+        if([view isKindOfClass:NSClassFromString(@"UITransitionView")]){
+        
+            if (showtarbar) {
+                view.height=ScreenHeight-49-20;
+            }else{
+                view.height=ScreenHeight-20;
+                
+            }
+        
+        }
+    }
+
+
+}
+
+#pragma mark UINavigationControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+
+    int count=navigationController.viewControllers.count;
+    
+    if (count>1) {
+
+        [self showtabbarView:NO];
+    }else{
+        [self showtabbarView:YES];
+    
+    }
 
 
 }

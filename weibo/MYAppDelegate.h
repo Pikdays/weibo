@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DDMenuController.h"
 @class SinaWeibo;
 @class MainViewController;
 
@@ -17,4 +18,6 @@
 @property(nonatomic,retain)SinaWeibo * sinaweibo;
 
 @property(nonatomic,retain) MainViewController * main;
+
+@property(nonatomic,retain)DDMenuController * menu;
 @end

@@ -30,7 +30,7 @@
 
 @property(nonatomic,assign)BOOL ismore;          //判断是否加载更多
 
--(void)refreshWeibo;
+-(void)refreshWeibo:(NSString *)noread_count;
 
 -(void)load_new_weibo:(NSMutableDictionary *)params;
 

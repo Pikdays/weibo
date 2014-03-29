@@ -100,6 +100,8 @@
     
     self.tableView.tableHeaderView=headView;
     
+    
+    
 
 }
 
@@ -183,6 +185,8 @@
    
     self.tableView.data=self.comments;
     
+    self.tableView.commentsdic=result;
+    
     //记得刷新
     [self.tableView reloadData];
     
@@ -250,7 +254,7 @@
 
     }
     
-    
+
     [self loaddata:params];
      }
     

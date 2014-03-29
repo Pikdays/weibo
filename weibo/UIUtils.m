@@ -1,6 +1,7 @@
 #import "UIUtils.h"
 #import <CommonCrypto/CommonDigest.h>
-
+#import "RegexKitLite.h"
+#import "NSString+URLEncoding.h"
 @implementation UIUtils
 
 + (NSString *)getDocumentsPath:(NSString *)fileName {
@@ -39,5 +40,39 @@
     NSString *text = [UIUtils stringFromFomate:createDate formate:@"MM-dd HH:mm"];
     return text;
 }
++(NSString *)parseUrl:(NSString *)text
+{
+    
+    if(text.length>0){
+        NSString *regex = @"(@\\w+)|(#\\w+#)|(http(s)?://([A-Za-z0-9._-]+(/)?)*)";
+        
+        
+        NSArray *array = [text componentsMatchedByRegex:regex];
+        
+        for (NSString *link in array) {
+            
+            NSString * replaceing=nil;
+            
+            if ([link hasPrefix:@"@"]) {
+                replaceing=[NSString stringWithFormat:@"<a href='user://%@'>%@</a>",[link URLEncodedString],link];
+            }else if ([link hasPrefix:@"http"]){
+                replaceing=[NSString stringWithFormat:@"<a href='%@'>%@</a>",link,link];
+                
+            }else if([link hasPrefix:@"#"]){
+                replaceing=[NSString stringWithFormat:@"<a href='topic://%@'>%@</a>",[link URLEncodedString],link];
+                
+            }
+            
+            if (replaceing!=nil) {
+                text = [text stringByReplacingOccurrencesOfString:link withString:replaceing];
+                
+            }
+            
+        }
+    
+    }
 
+    return text;
+
+}
 @end

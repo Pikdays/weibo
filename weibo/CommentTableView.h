@@ -10,4 +10,7 @@
 
 @interface CommentTableView : BaseTableView<UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic,retain)NSDictionary * commentsdic;
+
+
 @end

@@ -9,8 +9,7 @@
 #import "CommentCell.h"
 #import "UIImageView+WebCache.h"
 #import "UIUtils.h"
-#import "RegexKitLite.h"
-#import "NSString+URLEncoding.h"
+#import "UIUtils.h"
 
 @implementation CommentCell
 
@@ -66,37 +65,8 @@
     }
 
     //内容
-    
-    NSString * text=_commentModel.text;
-    
-    
-    NSString *regex = @"(@\\w+)|(#\\w+#)|(http(s)?://([A-Za-z0-9._-]+(/)?)*)";
-    
-    
-    NSArray *array = [text componentsMatchedByRegex:regex];
-    
-    for (NSString *link in array) {
-        
-        NSString * replaceing=nil;
-        
-        if ([link hasPrefix:@"@"]) {
-            replaceing=[NSString stringWithFormat:@"<a href='user://%@'>%@</a>",[link URLEncodedString],link];
-        }else if ([link hasPrefix:@"http"]){
-            replaceing=[NSString stringWithFormat:@"<a href='%@'>%@</a>",link,link];
-            
-        }else if([link hasPrefix:@"#"]){
-            replaceing=[NSString stringWithFormat:@"<a href='topic://%@'>%@</a>",[link URLEncodedString],link];
-            
-        }
-        
-        if (replaceing!=nil) {
-            text = [text stringByReplacingOccurrencesOfString:link withString:replaceing];
-            
-        }
-        
-    }
    
-    _contentLabel.text=text;
+    _contentLabel.text=[UIUtils parseUrl:_commentModel.text];
     
     _contentLabel.height=_contentLabel.optimumSize.height;
     

@@ -13,4 +13,6 @@
 
 + (NSString *)fomateString:(NSString *)datestring;
 
++(NSString *)parseUrl:(NSString *)text;
+
 @end

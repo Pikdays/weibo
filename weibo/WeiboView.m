@@ -10,8 +10,7 @@
 #import "UiFactory.h"
 #import "UIImageView+WebCache.h"
 #import "ThemeImageView.h"
-#import "RegexKitLite.h"
-#import "NSString+URLEncoding.h"
+#import "UIUtils.h"
 #define LIST_FONT   14.0f           //列表中文本字体
 #define LIST_REPOST_FONT  13.0f;    //列表中转发的文本字体
 #define DETAIL_FONT  18.0f          //详情的文本字体
@@ -80,38 +79,8 @@
         [_parseText appendString:nickname];
     }
     
-    NSString * text=_weiboModel.text;
-
     
-    NSString *regex = @"(@\\w+)|(#\\w+#)|(http(s)?://([A-Za-z0-9._-]+(/)?)*)";
-    
-    
-    NSArray *array = [text componentsMatchedByRegex:regex];
-    
-    for (NSString *link in array) {
-        
-        //link= [link URLEncodedString];
-        
-        NSString * replaceing=nil;
-        
-        if ([link hasPrefix:@"@"]) {
-            replaceing=[NSString stringWithFormat:@"<a href='user://%@'>%@</a>",[link URLEncodedString],link];
-        }else if ([link hasPrefix:@"http"]){
-            replaceing=[NSString stringWithFormat:@"<a href='%@'>%@</a>",link,link];
-
-        }else if([link hasPrefix:@"#"]){
-            replaceing=[NSString stringWithFormat:@"<a href='topic://%@'>%@</a>",[link URLEncodedString],link];
-        
-        }
-        
-        if (replaceing!=nil) {
-            text = [text stringByReplacingOccurrencesOfString:link withString:replaceing];
-
-        }
-        
-    }
-
-    [_parseText appendString:text];
+    [_parseText appendString:[UIUtils parseUrl:_weiboModel.text]];
 
 }
 //加载视图数据，展现视图，子视图布局,会被调用多次
@@ -160,9 +129,6 @@
         
         NSString * imagePath=_weiboModel.bmiddleImage;
         
-        
-        NSLog(@"imagePath--%@",imagePath);
-
         
         if (imagePath !=nil && ![@"" isEqualToString:imagePath]) {
             
@@ -235,6 +201,7 @@
     if (_repostView  == nil) {
         _repostView=[[WeiboView alloc]initWithFrame:CGRectZero];
         _repostView.isRePost=YES;
+        _repostView.isDetail=self.isDetail;
         [self addSubview:_repostView];
     }
 
@@ -283,11 +250,16 @@
         textLabel.width = kWeibo_Width_List;
     }
     
+    NSString  *weiboText=weiboModel.text;
     
     if (isRepost) {
         textLabel.width-=20;
+        
+       weiboText=[NSString stringWithFormat:@"%@:%@",weiboModel.user.screen_name,weiboModel.text];
+        
     }
-    textLabel.text = weiboModel.text;
+    
+    textLabel.text =weiboText;
     
     
     height += textLabel.optimumSize.height;

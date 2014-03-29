@@ -8,7 +8,6 @@
 
 #import "MYAppDelegate.h"
 #import "MainViewController.h"
-#import "DDMenuController.h"
 #import "LeftViewController.h"
 #import "RightViewController.h"
 #import "SinaWeibo.h"
@@ -52,19 +51,19 @@
      _main=[[MainViewController alloc]init];
 
 
-    DDMenuController * menu=[[DDMenuController alloc]initWithRootViewController:_main];
+    _menu=[[DDMenuController alloc]initWithRootViewController:_main];
     
     LeftViewController *left=[[LeftViewController alloc]init];
     RightViewController *right=[[RightViewController alloc]init];
     
-    menu.leftViewController=left;
-    menu.rightViewController=right;
+    _menu.leftViewController=left;
+    _menu.rightViewController=right;
     
     [self _initSinaWeibo];
     
-    self.window.rootViewController=menu;
+    self.window.rootViewController=_menu;
 
-    [menu release];
+    [_menu release];
     
     return YES;
 }

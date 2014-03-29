@@ -10,7 +10,7 @@
 #import "SinaWeibo.h"
 #import "ThemeImageView.h"
 #import "HomeViewController.h"
-@interface MainViewController : UITabBarController<SinaWeiboDelegate,SinaWeiboRequestDelegate>
+@interface MainViewController : UITabBarController<SinaWeiboDelegate,SinaWeiboRequestDelegate,UINavigationControllerDelegate>
 {
 
     UIView * _tabbarView;
@@ -24,7 +24,10 @@
 
 @property(nonatomic,retain) NSArray * views;
 
-@property(nonatomic,assign)NSNumber * noread_count;    //未读微博数目
+@property(nonatomic,retain)NSNumber * noread_count;    //未读微博数目
+
+
+-(void)showtabbarView:(BOOL)show;
 
 
 

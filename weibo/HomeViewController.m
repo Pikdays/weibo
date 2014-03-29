@@ -13,6 +13,7 @@
 #import "UiFactory.h"
 #import "MainViewController.h"
 #import "DetailViewController.h"
+#import "MYAppDelegate.h"
 
 @interface HomeViewController ()
 
@@ -58,12 +59,22 @@
     _ismore=NO;
     
     _tableView.hidden=YES;
-    
-    //[super showloading:YES];
 
-    [super showhud];
+
+        
+        //[super showloading:YES];
     
-    [self load_new_weibo:nil];
+    if(self.sinaweibo.isAuthValid){
+    
+     [self load_new_weibo:nil];
+    }else{
+    
+        [self bindAction:nil];
+    }
+
+
+        
+    
     
 }
 
@@ -221,6 +232,9 @@
         
         [_tableView stopload];
         
+        //去掉第一条重复微博
+        [weibos removeObjectAtIndex:0];
+        
         [self.weibos addObjectsFromArray:weibos];
         
         [self.tableView doneLoadingTableViewData];
@@ -245,6 +259,9 @@
 //加载新微博
 -(void)load_new_weibo:(NSMutableDictionary *)params
 {
+    //显示提示框
+   if(!_ismore&&!_isrefresh) [super showhud];
+
     
     if (params==nil) {
         
@@ -280,16 +297,65 @@
     
 }
 
-#pragma mark UITableViewEventDelegate
--(void)pullDown:(BaseTableView *)tableView
+//tarbar点击调用
+-(void)pullDown:(BaseTableView *)tableView noread_count:(NSString *)n_count
 {
     
-    NSLog(@"self.topId%@",self.topId);
     _isrefresh=YES;
     
     _ismore=NO;
     
+    NSString *count=WeiboSize;
+    
+    if (n_count!=nil&&[n_count intValue]>0) {
+     count=n_count;
+    }
+    
+    
+    NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:count forKey:@"count"];
+    
+    if (self.topId!=nil) {
+        [params setObject:self.topId forKey:@"since_id"];
+    }
+    
+    [self load_new_weibo:params];
+    
+    
+    
+}
 
+#pragma mark showDDmenu
+
+-(void)showMenu:(BOOL) show
+{
+
+    MYAppDelegate *delegate = (MYAppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    DDMenuController * menu=delegate.menu;
+    
+    [menu setEnableGesture:show];
+
+}
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    [self showMenu:YES];
+
+}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self showMenu:NO];
+}
+#pragma mark UITableViewEventDelegate
+-(void)pullDown:(BaseTableView *)tableView
+{
+    
+    _isrefresh=YES;
+    
+    _ismore=NO;
     
     
     NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:WeiboSize forKey:@"count"];
@@ -298,12 +364,12 @@
         [params setObject:self.topId forKey:@"since_id"];
     }
     
-    
     [self load_new_weibo:params];
-
+    
     
     
 }
+
 -(void)pullUp:(BaseTableView *)tableView
 {
     
@@ -325,14 +391,15 @@
 
 }
 
--(void)refreshWeibo{
-    
+-(void)refreshWeibo:(NSString *)n_count{
     
     //使ui下拉
     [_tableView auto_refresh];
     
     //取数据
-    [self pullDown:_tableView];
+    
+    [self pullDown:_tableView noread_count:n_count];
+    
     
 
 }
