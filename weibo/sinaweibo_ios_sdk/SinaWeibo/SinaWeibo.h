@@ -68,12 +68,11 @@
                              params:(NSMutableDictionary *)params
                          httpMethod:(NSString *)httpMethod
                            delegate:(id<SinaWeiboRequestDelegate>)delegate;
-
-//--------------------
-- (SinaWeiboRequest*)requestWithURL:(NSString *)url
-                             params:(NSMutableDictionary *)params
-                         httpMethod:(NSString *)httpMethod
-                           block:(RequestFinishBlock)block;
+- (SinaWeiboRequest *)requestWithTAG:(NSString *)url
+                              params:(NSMutableDictionary *)params
+                          httpMethod:(NSString *)httpMethod
+                                 tag:(NSString *)tag
+                            delegate:(id<SinaWeiboRequestDelegate>)_delegate;
 @end
 
 

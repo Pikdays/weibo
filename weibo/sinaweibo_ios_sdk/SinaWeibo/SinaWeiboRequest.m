@@ -195,17 +195,12 @@
             {
                 [delegate request:self didFinishLoadingWithResult:(result == nil ? data : result)];
             }
-            //------------------
-            if (self.block) {
-                self.block(result == nil ? data : result);
-                Block_release(self.block);
-            }
         }
 	}
     
     //--------------debug---------------
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"json:%@",string);
+//    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"json:%@",string);
     
 }
 
@@ -421,23 +416,5 @@
     
     [sinaweibo requestDidFinish:self];
 }
-//---------------
-
-+ (SinaWeiboRequest *)requestWithURL:(NSString *)url
-                          httpMethod:(NSString *)httpMethod
-                              params:(NSDictionary *)params
-                               block:(RequestFinishBlock)block
-{
-
- SinaWeiboRequest * request=[self requestWithURL:url httpMethod:httpMethod params:params delegate:nil];
-
-    request.block=block;
-    
-    
-    return request;
-    
-}
-
-
 
 @end

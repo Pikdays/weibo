@@ -23,16 +23,15 @@
 
 @property(nonatomic,copy)NSString * downId;     //最小的id
 
+@property(nonatomic,copy)NSString * n_count;     //未读微博数
 
 @property(nonatomic,retain)NSMutableArray * weibos;  //保存所有的数据
 
-@property(nonatomic,assign)BOOL isrefresh;          //判断是否是下拉刷新操作
-
-@property(nonatomic,assign)BOOL ismore;          //判断是否加载更多
 
 -(void)refreshWeibo:(NSString *)noread_count;
 
 -(void)load_new_weibo:(NSMutableDictionary *)params;
+
 
 
 

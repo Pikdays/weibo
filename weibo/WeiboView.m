@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "ThemeImageView.h"
 #import "UIUtils.h"
+#import "UserViewController.h"
 #define LIST_FONT   14.0f           //列表中文本字体
 #define LIST_REPOST_FONT  13.0f;    //列表中转发的文本字体
 #define DETAIL_FONT  18.0f          //详情的文本字体
@@ -187,7 +188,12 @@
 #pragma mark RTLabel delegate
 - (void)rtLabel:(id)rtLabel didSelectLinkWithURL:(NSURL*)url
 {
-
+    
+    NSLog(@"%@",self.viewController);
+    UserViewController * view=[[UserViewController alloc]init];
+    [self.viewController.navigationController pushViewController:view animated:YES];
+    
+    
     NSLog(@"url%@",[[url absoluteString]URLDecodedString]);
 
 }

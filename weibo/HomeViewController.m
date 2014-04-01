@@ -53,31 +53,23 @@
     [self.view addSubview:self.tableView];
     
     
-
-    _isrefresh=NO;
-    
-    _ismore=NO;
-    
     _tableView.hidden=YES;
 
 
-        
         //[super showloading:YES];
     
     if(self.sinaweibo.isAuthValid){
     
-     [self load_new_weibo:nil];
+     [self load_new_weibo:@"100"];
+        
     }else{
     
         [self bindAction:nil];
     }
 
-
-        
     
     
 }
-
 
 
 #pragma mark ui
@@ -167,6 +159,7 @@
     
    // [super hidehud];
     
+    
     [ super showhud_custom:@"加载完成"];
     
     _tableView.hidden=NO;
@@ -174,7 +167,7 @@
     NSArray *statues = [result objectForKey:@"statuses"];
     
     //显示更新的数据数目
-    if (statues.count>0&&!_ismore) {
+    if (statues.count>0&&[_request.tag intValue]!=102) {
         [self showUpdateCount:statues.count];
         
     }
@@ -191,17 +184,21 @@
         
     }
     
-    
-    if (statues.count<[WeiboSize intValue]) {
-    
-        self.tableView.islast=YES;
+    if ([_request.tag intValue]==102) {
         
-    }else{
-    
-        self.tableView.islast=NO;
-
-    
+        if (statues.count<[WeiboSize intValue]) {
+            
+            self.tableView.islast=YES;
+            
+        }else{
+            
+            self.tableView.islast=NO;
+            
+            
+        }
     }
+    
+ 
 
     if (weibos!=nil&&weibos.count>0) {
         
@@ -215,21 +212,18 @@
         
         
     }
-    
-    //下拉
-    if (_isrefresh) {
-        
+    switch ([_request.tag intValue]) {
+        case 100:
+        self.weibos=weibos;
+        break;
+        case 101:
         [weibos addObjectsFromArray:self.weibos];
         
         [self.tableView doneLoadingTableViewData];
         
         self.weibos=weibos;
-    }
-    
-    //更多
-    if (_ismore) {
-        
-        
+        break;
+        case 102:
         [_tableView stopload];
         
         //去掉第一条重复微博
@@ -238,14 +232,17 @@
         [self.weibos addObjectsFromArray:weibos];
         
         [self.tableView doneLoadingTableViewData];
+        break;
+        case 104:
         
+        [weibos addObjectsFromArray:self.weibos];
+        [self.tableView doneLoadingTableViewData];
+
+        self.weibos=weibos;
+        break;
+        default:
+        break;
     }
-    
-    //普通加载
-    
-    if(!_ismore&&!_isrefresh)      self.weibos=weibos;
-
-
     
     
     self.tableView.data=self.weibos;
@@ -257,23 +254,55 @@
 }
 #pragma mark loaddata
 //加载新微博
--(void)load_new_weibo:(NSMutableDictionary *)params
+-(void)load_new_weibo:(NSString *)tag
 {
-    //显示提示框
-   if(!_ismore&&!_isrefresh) [super showhud];
-
+    //100  普通加载
+    //101  下拉刷新
+    //102  更多
+    //104  tarbar点击
     
-    if (params==nil) {
-        
-        params=[NSMutableDictionary dictionaryWithObject:WeiboSize forKey:@"count"];
-
+    if (tag == nil) {
+        tag=@"100";
     }
+    
+    if(tag != nil&&[tag intValue]==100) [super showhud];
     
     if(self.sinaweibo.isAuthValid){
         
-        [self.sinaweibo requestWithURL:@"statuses/home_timeline.json" params:params httpMethod:@"GET" delegate:self];
+        NSMutableDictionary *  params=[NSMutableDictionary dictionaryWithObject:WeiboSize forKey:@"count"];
+        
+        if ([tag intValue]==101&&_topId!=nil) {
+            [params setObject:self.topId forKey:@"since_id"];
+        }
+        
+        
+        if ([tag intValue]==102&&_downId!=nil) {
+            
+            [params setObject:_downId forKey:@"max_id"];
+            
+        }
+        
+        if ([tag intValue]==104&&_topId!=nil&&[_n_count intValue]>0) {
+            
+            [params setObject:_topId forKey:@"max_id"];
+            
+            [params setObject:_n_count forKey:@"count"];
+            
+            NSLog(@"%@",params);
+                    
+        }
+        if(self.sinaweibo.isAuthValid){
+            
+            
+            [self.sinaweibo requestWithTAG:@"statuses/home_timeline.json" params:params httpMethod:@"GET" tag:tag delegate:self];
+            
+        }
         
     }
+    
+    
+
+
 
 }
 
@@ -300,28 +329,11 @@
 //tarbar点击调用
 -(void)pullDown:(BaseTableView *)tableView noread_count:(NSString *)n_count
 {
-    
-    _isrefresh=YES;
-    
-    _ismore=NO;
-    
-    NSString *count=WeiboSize;
-    
-    if (n_count!=nil&&[n_count intValue]>0) {
-     count=n_count;
+    if (n_count!=nil&&n_count.length>0) {
+        _n_count=n_count;
+        
+        [self load_new_weibo:@"104"];
     }
-    
-    
-    NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:count forKey:@"count"];
-    
-    if (self.topId!=nil) {
-        [params setObject:self.topId forKey:@"since_id"];
-    }
-    
-    [self load_new_weibo:params];
-    
-    
-    
 }
 
 #pragma mark showDDmenu
@@ -352,43 +364,16 @@
 #pragma mark UITableViewEventDelegate
 -(void)pullDown:(BaseTableView *)tableView
 {
-    
-    _isrefresh=YES;
-    
-    _ismore=NO;
-    
-    
-    NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:WeiboSize forKey:@"count"];
-    
-    if (self.topId!=nil) {
-        [params setObject:self.topId forKey:@"since_id"];
-    }
-    
-    [self load_new_weibo:params];
-    
-    
+    [self load_new_weibo:@"101"];
+
     
 }
 
 -(void)pullUp:(BaseTableView *)tableView
 {
-    
-    _ismore=YES;
-    
-    _isrefresh=NO;
-    
-    
-    NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:WeiboSize forKey:@"count"];
-    
-    
-    if (_downId) {
-        [params setObject:_downId forKey:@"max_id"];
-    }
-    
-    
-    [self load_new_weibo:params];
-    
 
+    
+    [self load_new_weibo :@"102"];
 }
 
 -(void)refreshWeibo:(NSString *)n_count{

@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIUtils.h"
 #import "RegexKitLite.h"
+#import "UserViewController.h"
 @implementation WeiboCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -28,6 +29,14 @@
     [super setSelected:selected animated:animated];
 
 }
+-(void)gotoUserinfo
+{
+    UserViewController * view=[[UserViewController alloc]init];
+    view.userName=_weiboModel.user.screen_name;
+    [self.viewController.navigationController pushViewController:view animated:YES];
+    
+}
+
 
 -(void)initView
 {
@@ -39,6 +48,18 @@
     _userImage.layer.borderWidth=.5;
     _userImage.layer.borderColor=[UIColor grayColor].CGColor;
     _userImage.layer.masksToBounds=YES;
+    
+    //最重要的，设置为YES才能点击，uiview默认是NO
+    _userImage.userInteractionEnabled = YES;
+
+    
+    //点击头像
+    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gotoUserinfo)];
+    
+    [_userImage addGestureRecognizer:singleTap];
+    
+
+    
     [self.contentView addSubview:_userImage];
     
     //昵称

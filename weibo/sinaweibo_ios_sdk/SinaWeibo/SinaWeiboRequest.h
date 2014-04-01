@@ -17,11 +17,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-//扩展的
-typedef void (^RequestFinishBlock)(id result);
-
-
 @class SinaWeiboRequest;
 @class SinaWeibo;
 
@@ -48,6 +43,7 @@ typedef void (^RequestFinishBlock)(id result);
     NSURLConnection                 *connection;
     NSMutableData                   *responseData;
     
+    
     id<SinaWeiboRequestDelegate>    delegate;
 }
 
@@ -57,24 +53,16 @@ typedef void (^RequestFinishBlock)(id result);
 @property (nonatomic, retain) NSDictionary *params;
 @property (nonatomic, assign) id<SinaWeiboRequestDelegate> delegate;
 
+@property(nonatomic,retain)NSString *tag ;  //请求类型
 
-//----------------------------
-
-@property(nonatomic,copy)RequestFinishBlock block;
-
-
-+ (SinaWeiboRequest *)requestWithURL:(NSString *)url
-                          httpMethod:(NSString *)httpMethod
-                              params:(NSDictionary *)params
-                            block:(RequestFinishBlock)block;
-
-
-//-----------------------------
 
 + (SinaWeiboRequest *)requestWithURL:(NSString *)url 
                           httpMethod:(NSString *)httpMethod 
                               params:(NSDictionary *)params
                             delegate:(id<SinaWeiboRequestDelegate>)delegate;
+
+
+
 
 + (SinaWeiboRequest *)requestWithAccessToken:(NSString *)accessToken
                                          url:(NSString *)url

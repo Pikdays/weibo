@@ -27,4 +27,6 @@
 
 //微博视图
 @property(nonatomic,retain)WeiboView * weiboView;
+
+
 @end

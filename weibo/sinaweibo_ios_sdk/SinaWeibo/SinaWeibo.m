@@ -353,6 +353,48 @@
     }
 }
 
+
+#pragma mark - Send request with tag
+//区分请求
+-(SinaWeiboRequest *)requestWithTAG:(NSString *)url params:(NSMutableDictionary *)params httpMethod:(NSString *)httpMethod tag:(NSString *)tag delegate:(id<SinaWeiboRequestDelegate>)_delegate
+{
+    if (params == nil)
+    {
+        params = [NSMutableDictionary dictionary];
+    }
+    
+    if ([self isAuthValid])
+    {
+        [params setValue:self.accessToken forKey:@"access_token"];
+        NSString *fullURL = [kSinaWeiboSDKAPIDomain stringByAppendingString:url];
+        
+        SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:fullURL
+                                                           httpMethod:httpMethod
+                                                               params:params
+                                                             delegate:_delegate];
+        
+        _request.sinaweibo = self;
+        [requests addObject:_request];
+        [_request connect];
+        
+        _request.tag=tag;
+        
+        return _request;
+    }
+    else
+    {
+        //notify token expired in next runloop
+        [self performSelectorOnMainThread:@selector(notifyTokenExpired:)
+                               withObject:_delegate
+                            waitUntilDone:NO];
+        
+        return nil;
+    }
+
+}
+
+
+
 #pragma mark - Send request with token
 
 /**
@@ -383,9 +425,13 @@
                                                            httpMethod:httpMethod
                                                                params:params
                                                              delegate:_delegate];
+
         _request.sinaweibo = self;
         [requests addObject:_request];
         [_request connect];
+        
+        _request.tag=@"100";
+        
         return _request;
     }
     else
@@ -537,43 +583,7 @@
     }
     return YES;
 }
-//---------------
 
-- (SinaWeiboRequest *)requestWithURL:(NSString *)url
-                          httpMethod:(NSString *)httpMethod
-                              params:(NSDictionary *)params
-                               block:(RequestFinishBlock)block
-{
-    NSLog(@"hhhh");
-    if (params == nil)
-    {
-        params = [NSMutableDictionary dictionary];
-    }
-    
-    if ([self isAuthValid])
-    {
-        [params setValue:self.accessToken forKey:@"access_token"];
-        NSString *fullURL = [kSinaWeiboSDKAPIDomain stringByAppendingString:url];
-        
-        SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:fullURL
-                                                           httpMethod:httpMethod
-                                                               params:params
-                                                             block:block];
-        _request.sinaweibo = self;
-        [requests addObject:_request];
-        [_request connect];
-        return _request;
-    }
-    else
-    {
-        //notify token expired in next runloop
-        [self performSelectorOnMainThread:@selector(notifyTokenExpired:)
-                               withObject:nil
-                            waitUntilDone:NO];
-        
-        return nil;
-    }
-}
 @end
 
 BOOL SinaWeiboIsDeviceIPad()
