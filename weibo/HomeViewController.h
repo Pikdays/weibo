@@ -6,17 +6,19 @@
 //  Copyright (c) 2014年 laijiawei. All rights reserved.
 //
 
-#import "BaseViewController.h"
 #import "WeiboTableView.h"
 #import "ThemeImageView.h"
+#import "BaseViewController.h"
+#import "MYAppDelegate.h"
 
-@interface HomeViewController : BaseViewController<SinaWeiboRequestDelegate,UITableViewEventDelegate>
+@interface HomeViewController:BaseViewController<SinaWeiboRequestDelegate,UITableViewEventDelegate>
 {
 
 
     ThemeImageView * barView;
 
 }
+
 @property (nonatomic, retain) WeiboTableView *tableView;
 
 @property(nonatomic,copy)NSString * topId;     //最大的id

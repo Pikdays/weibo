@@ -11,17 +11,27 @@
 #import "SinaWeibo.h"
 
 #import "MBProgressHUD.h"
+
+
 @interface BaseViewController : UIViewController
 
+
 @property(nonatomic,assign)BOOL isBackButton;
+
+@property(nonatomic,assign)BOOL isCancelButton;
+
 
 @property(nonatomic,retain)UIView * loadingView;
 
 @property(nonatomic,retain)MBProgressHUD *hud;
 
+@property(nonatomic,retain)NSMutableArray *requests;
 
+
+-(void)disView;
 
 - (SinaWeibo *)sinaweibo;
+
 
 -(void)showloading:(BOOL)show;
 

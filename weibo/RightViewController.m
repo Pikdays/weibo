@@ -7,7 +7,9 @@
 //
 
 #import "RightViewController.h"
-
+#import "BaseNavigationController.h"
+#import "SendViewController.h"
+#import "MYAppDelegate.h"
 @interface RightViewController ()
 
 @end
@@ -35,4 +37,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)butclick:(UIButton *)sender {
+    
+    NSInteger * tag=sender.tag;
+    
+    if (tag==100) {
+        SendViewController * send=[[SendViewController alloc]init];
+        BaseNavigationController * nav=[[BaseNavigationController alloc]initWithRootViewController:send];
+      MYAppDelegate * delegate=  (MYAppDelegate *)[UIApplication sharedApplication].delegate;
+        [delegate.menu presentViewController:nav animated:YES completion:nil];
+    }
+    
+}
 @end

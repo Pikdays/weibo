@@ -7,7 +7,6 @@
 //
 
 #import "MYAppDelegate.h"
-#import "MainViewController.h"
 #import "LeftViewController.h"
 #import "RightViewController.h"
 #import "SinaWeibo.h"

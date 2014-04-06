@@ -31,4 +31,27 @@
 
     return [[ThemeImageView alloc]initWithImageName:imageName];
 
-}@end
+}
+
+
++(UIButton *)createNavButton:(CGRect)frame title:(NSString * )title target:(id)target action:(SEL)action
+{
+
+    ThemeButton * but=[self createbackButton:@"navigationbar_button_background.png" BackhighImage:@"navigationbar_button_delete_background.png"];
+    but.frame=frame;
+    
+    [but setTitle:title forState:UIControlStateNormal];
+    
+    [but addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    
+    [but setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    but.titleLabel.font=[UIFont systemFontOfSize:13.0];
+    
+    but.leftCapWidth=3;
+    
+    return but;
+
+}
+
+@end

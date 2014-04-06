@@ -9,7 +9,8 @@
 #import "UserViewController.h"
 #import "UserinfoView.h"
 #import "WeiboModel.h"
-
+#import "UiFactory.h"
+#import "ThemeButton.h"
 @interface UserViewController ()
 
 @end
@@ -24,11 +25,38 @@
     }
     return self;
 }
+-(void)viewWillDisappear:(BOOL)animated
+{
+
+    [super viewWillDisappear:animated];
+    
+    if (self.requests!=nil&&self.requests.count>0) {
+       
+        for(SinaWeiboRequest * request in self.requests)
+    
+            [request disconnect];
+    
+        NSLog(@"disconnect");
+        
+    };
+
+
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    ThemeButton * but=  [UiFactory createbackButton:@"tabbar_home.png" BackhighImage:@"tabbar_home_highlighted"];
+    
+    but.frame=CGRectMake(0, 0, 30, 30);
+    
+    [but addTarget:self action:@selector(gohome) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem * baritem=[[UIBarButtonItem alloc]initWithCustomView:but];
+    
+    self.navigationItem.rightBarButtonItem=baritem;
+
     
     self.userinfoView=[[UserinfoView alloc]initWithFrame:CGRectMake(0, 0, 320, 200)];
     
@@ -39,6 +67,14 @@
     [self loadWeibo:@"100"];
     
 }
+
+-(void)gohome
+{
+    //返回到根控制器,也就是homeController
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
+}
+
 //加载用户微博
 -(void)loadWeibo:(NSString *)tag
 {
@@ -71,7 +107,9 @@
         if(self.sinaweibo.isAuthValid){
             
             
-            [self.sinaweibo requestWithTAG:@"statuses/user_timeline.json" params:params httpMethod:@"GET" tag:@"101" delegate:self];
+      SinaWeiboRequest * request=[self.sinaweibo requestWithTAG:@"statuses/user_timeline.json" params:params httpMethod:@"GET" tag:@"101" delegate:self];
+            
+            [self.requests addObject:request];
 
         }
     }
@@ -91,7 +129,8 @@
         if(self.sinaweibo.isAuthValid){
             
             
-            [self.sinaweibo requestWithTAG:@"users/show.json" params:params httpMethod:@"GET" tag:@"104" delegate:self];
+           SinaWeiboRequest * request= [self.sinaweibo requestWithTAG:@"users/show.json" params:params httpMethod:@"GET" tag:@"104" delegate:self];
+             [self.requests addObject:request];
         }
     }
  

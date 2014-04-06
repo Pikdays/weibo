@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface RightViewController : BaseViewController
+- (IBAction)butclick:(id)sender;
 
 @end

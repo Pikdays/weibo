@@ -27,10 +27,8 @@
 
     UIImage * image=[[ThemeManager shareInstance]getThemeImage:_imageName];
     
-    [image stretchableImageWithLeftCapWidth:_leftCapWidth topCapHeight:_topCapHeight];
-    
-//    NSLog(@"%d---------%d",_leftCapWidth,_topCapHeight);
-    
+    image=[image stretchableImageWithLeftCapWidth:_leftCapWidth topCapHeight:_topCapHeight];
+        
     [self setImage:image];    
 
 }

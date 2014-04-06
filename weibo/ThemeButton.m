@@ -40,12 +40,17 @@
 
 -(void)loadimage
 {
-
     ThemeManager * manage=[ThemeManager shareInstance];
     
     UIImage * image=[manage getThemeImage:_imageName];
     
+    image= [image stretchableImageWithLeftCapWidth:_leftCapWidth topCapHeight:_topCapHeight];
+
+    
     UIImage * heightImage=[manage getThemeImage:_heightimageName];
+    
+    heightImage= [heightImage stretchableImageWithLeftCapWidth:_leftCapWidth topCapHeight:_topCapHeight];
+
     
     [self setImage:image forState:UIControlStateNormal];
     [self setImage:heightImage forState:UIControlStateHighlighted];
@@ -53,9 +58,13 @@
 
     UIImage * backimage=[manage getThemeImage:_backimageName];
     
+    backimage= [backimage stretchableImageWithLeftCapWidth:_leftCapWidth topCapHeight:_topCapHeight];
+
+    
     UIImage * backheightImage=[manage getThemeImage:_backheightimageName];
     
-    
+    backheightImage= [backheightImage stretchableImageWithLeftCapWidth:_leftCapWidth topCapHeight:_topCapHeight];
+
     [self setBackgroundImage:backimage forState:UIControlStateNormal];
     [self setBackgroundImage:backheightImage forState:UIControlStateHighlighted];
 
@@ -131,6 +140,26 @@
     [self loadimage];
 
 }
+
+-(void)setTopCapHeight:(int)topCapHeight
+{
+    
+    self.topCapHeight=topCapHeight;
+    [self loadimage];
+    
+}
+-(void)setLeftCapWidth:(int)leftCapWidth
+{
+    
+    _leftCapWidth=leftCapWidth;
+    
+    [self loadimage];
+    
+}
+
+
+
+
 //清除通知
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

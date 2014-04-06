@@ -12,6 +12,7 @@
 #import "ThemeImageView.h"
 #import "UIUtils.h"
 #import "UserViewController.h"
+#import "WebViewController.h"
 #define LIST_FONT   14.0f           //列表中文本字体
 #define LIST_REPOST_FONT  13.0f;    //列表中转发的文本字体
 #define DETAIL_FONT  18.0f          //详情的文本字体
@@ -189,12 +190,32 @@
 - (void)rtLabel:(id)rtLabel didSelectLinkWithURL:(NSURL*)url
 {
     
-    NSLog(@"%@",self.viewController);
-    UserViewController * view=[[UserViewController alloc]init];
-    [self.viewController.navigationController pushViewController:view animated:YES];
+    NSString * path=[url absoluteString];
+    
+    if ([path hasPrefix:@"user"]) {
+        
+        NSLog(@"%@",self.viewController);
+        UserViewController * view=[[UserViewController alloc]init];
+        [self.viewController.navigationController pushViewController:view animated:YES];
+        
+        
+    }else if([path hasPrefix:@"http"]){
+        
+//        path=@"http://www.baidu.com";
+        
+        WebViewController * web=[[WebViewController alloc]initwithUrl:path];
+        
+        [self.viewController.navigationController pushViewController:web animated:YES];
+        
+    }else if([path hasPrefix:@"topic"]){
     
     
-    NSLog(@"url%@",[[url absoluteString]URLDecodedString]);
+    
+    };
+
+    
+    
+//    NSLog(@"url%@",[[url absoluteString]URLDecodedString]);
 
 }
 

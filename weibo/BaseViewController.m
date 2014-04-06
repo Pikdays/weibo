@@ -21,6 +21,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.isBackButton=YES;
+        self.isCancelButton=NO;
+        self.requests=[NSMutableArray array];
     
     }
     return self;
@@ -34,8 +36,7 @@
     
  
     //更改自定义的返回按钮
-    
-    if (ctrls.count>1&&_isBackButton==YES) {
+        if (ctrls.count>1&&_isBackButton==YES) {
         
         UIButton * but=[UiFactory createButton:@"navigationbar_back.png" highImage:@"navigationbar_back_highlighted.png"];
  
@@ -49,16 +50,39 @@
         
      }
     
+    if (_isCancelButton) {
+        
+        UIButton * cancelbut=[UiFactory createNavButton:CGRectMake(0, 0, 45, 30) title:@"取消" target:self action:@selector(CancelClick:)];
+        
+        self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc]initWithCustomView:cancelbut];
+    }
+    
+    
 }
 
+
+
+-(void)CancelClick:(UIButton *)button
+{
+
+    [self disView];
+}
+
+//关闭弹出窗口
+-(void)disView
+{
+    [self dismissViewControllerAnimated:YES completion:nil];//5.0之后
+    
+    //    [self dismissModalViewControllerAnimated:YES];5.0之前
+
+}
 
 //点击返回按钮
 -(void)back:(UIButton *) button
 {
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -80,6 +104,9 @@
     self.navigationItem.titleView=label;
     
 }
+
+
+
 
 - (SinaWeibo *)sinaweibo
 {

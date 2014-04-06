@@ -10,6 +10,8 @@
 
 @interface ThemeButton : UIButton
 
+@property(nonatomic,assign)int leftCapWidth;
+@property(nonatomic,assign)int topCapHeight;
 //按钮图片
 @property(nonatomic,copy) NSString * imageName;
 @property(nonatomic,copy) NSString * heightimageName;

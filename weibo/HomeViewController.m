@@ -13,8 +13,6 @@
 #import "UiFactory.h"
 #import "MainViewController.h"
 #import "DetailViewController.h"
-#import "MYAppDelegate.h"
-
 @interface HomeViewController ()
 
 @end
@@ -284,11 +282,13 @@
         
         if ([tag intValue]==104&&_topId!=nil&&[_n_count intValue]>0) {
             
-            [params setObject:_topId forKey:@"max_id"];
+            [params setObject:_topId forKey:@"since_id"];
             
             [params setObject:_n_count forKey:@"count"];
             
             NSLog(@"%@",params);
+            
+            NSLog(@"hello");
                     
         }
         if(self.sinaweibo.isAuthValid){
@@ -397,6 +397,8 @@
     detail.weiboModel=[self.weibos objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:detail animated:YES];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end
