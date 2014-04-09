@@ -181,4 +181,79 @@
     
     [self.hud hide:YES afterDelay:1];
 }
+
+//状态栏显示
+-(void)showStatusView:(BOOL)show title:(NSString *)title
+{
+
+
+    if (_tipwindow==nil) {
+        
+        _tipwindow=[[UIWindow alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
+        
+        _tipwindow.windowLevel=UIWindowLevelStatusBar;
+        
+        _tipwindow.backgroundColor=[UIColor blackColor];
+        
+        UILabel * label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
+        
+        label.font=[UIFont systemFontOfSize:13];
+        
+        label.backgroundColor=[UIColor clearColor];
+        
+        label.textAlignment=NSTextAlignmentCenter;
+        
+        label.textColor=[UIColor whiteColor];
+        
+        label.tag=101;
+        
+        [_tipwindow addSubview:label];
+        
+        UIImageView * process=[[UIImageView alloc]initWithFrame:CGRectMake(0, 20-6, 100, 6)];
+        
+        [process setImage:[UIImage imageNamed:@"queue_statusbar_progress.png"]];
+        
+        process.tag=102;
+        
+        [_tipwindow addSubview:process];
+        
+    }
+
+    UILabel * label=[_tipwindow  viewWithTag:101];
+    
+    label.text=title;
+    
+    UIImageView *process=[_tipwindow viewWithTag:102];
+
+    
+    if (show) {
+        
+        _tipwindow.hidden=NO;
+        process.left=0;
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationRepeatCount:1000];//重复次数
+        [UIView setAnimationDuration:2];//时间
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];//速度
+        process.left=ScreenWidth;
+        [UIView commitAnimations];
+        
+
+    }else{
+        
+        process.hidden=YES;
+        
+        [self performSelector:@selector(disWindow) withObject:nil afterDelay:1.5];
+    
+    }
+
+
+}
+
+-(void)disWindow
+{
+    _tipwindow.hidden=YES;
+
+    _tipwindow=nil;
+}
+
 @end

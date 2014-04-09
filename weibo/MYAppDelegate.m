@@ -66,5 +66,13 @@
     
     return YES;
 }
-							
+
+//禁止横屏
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
+
 @end

@@ -26,6 +26,7 @@
 @property(nonatomic,retain)MBProgressHUD *hud;
 
 @property(nonatomic,retain)NSMutableArray *requests;
+@property(nonatomic,retain) UIWindow * tipwindow;
 
 
 -(void)disView;
@@ -42,7 +43,7 @@
 
 -(void)showhud_custom:(NSString *)title;
 
-
+-(void)showStatusView:(BOOL)show title:(NSString *)title;
 
 
 @end

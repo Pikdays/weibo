@@ -7,6 +7,7 @@
 //
 
 #import "MessageViewController.h"
+#import "faceView.h"
 
 @interface MessageViewController ()
 
@@ -26,7 +27,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    faceView * view=[[faceView alloc]initWithFrame:CGRectZero];
+    
+    UIScrollView *sview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 100, 320, 260)];
+    
+    sview.backgroundColor=[UIColor grayColor];
+
+    sview.contentSize=CGSizeMake(view.width, view.height);
+    
+    sview.pagingEnabled=YES;
+    
+    [sview addSubview:view];
+    
+    
+    [self.view addSubview:sview];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

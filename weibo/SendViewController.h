@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface SendViewController : BaseViewController<SinaWeiboRequestDelegate>
+@interface SendViewController : BaseViewController<SinaWeiboRequestDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @property (weak, nonatomic) IBOutlet UIView *toolView;
@@ -17,6 +17,14 @@
 
 @property(nonatomic,copy)NSString * latitude;
 @property(nonatomic,copy)NSString * longitude;
+
+@property(nonatomic,retain)UIImage * photoimage;
+
+@property(nonatomic,retain)UIButton * photobutton;
+
+@property(nonatomic,retain)UIImageView * photoImageBigView;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *placeImage;
 @property (weak, nonatomic) IBOutlet UIView *placeView;

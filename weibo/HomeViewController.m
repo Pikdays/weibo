@@ -33,6 +33,9 @@
     
     [super viewDidLoad];
     
+
+
+    
     //绑定按钮
     UIBarButtonItem *bindItem = [[UIBarButtonItem alloc] initWithTitle:@"绑定账号" style:UIBarButtonItemStyleBordered target:self action:@selector(bindAction:)];
     self.navigationItem.rightBarButtonItem = [bindItem autorelease];
