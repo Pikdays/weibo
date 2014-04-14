@@ -27,6 +27,9 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="MKa-xO-wbP"/>
+                    </connections>
                 </textView>
                 <view contentMode="scaleToFill" id="tfh-HK-QXx">
                     <rect key="frame" x="0.0" y="161" width="320" height="70"/>

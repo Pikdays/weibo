@@ -19,6 +19,9 @@
 
         [self init_data];
         
+        _pagecount=items.count;
+
+        
         self.backgroundColor=[UIColor clearColor];
     }
     return self;
@@ -44,6 +47,7 @@
         
         [item addObject:dic];
     }
+    
     
     //设置尺寸
     self.width=items.count*ScreenWidth;
@@ -135,6 +139,7 @@
     
     NSString * faceimage=[items[p][index] objectForKey:@"png"];
     
+    _selecttitle=[items[p][index] objectForKey:@"chs"];
 
     
     //性能优化
@@ -192,6 +197,16 @@
         UIScrollView * view=(UIScrollView *)self.superview;
         view.scrollEnabled=YES;
     }
+    
+    //记得判断是否为空，不然程序会崩溃
+    if (self.block!=nil) {
+        _block(_selecttitle);
+    }
+
+}
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    _enlargeView.hidden=YES;
 
 }
 @end

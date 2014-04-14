@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 
+#import "FriendshipViewController.h"
 @interface ProfileViewController ()
 
 @end
@@ -27,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 
     
 }

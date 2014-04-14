@@ -7,8 +7,9 @@
 //
 
 #import "BaseViewController.h"
+#import "faceScrollView.h"
 
-@interface SendViewController : BaseViewController<SinaWeiboRequestDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate>
+@interface SendViewController : BaseViewController<SinaWeiboRequestDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @property (weak, nonatomic) IBOutlet UIView *toolView;
@@ -28,5 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *placeImage;
 @property (weak, nonatomic) IBOutlet UIView *placeView;
+
+@property(nonatomic,retain) faceScrollView * face;
 
 @end

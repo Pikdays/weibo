@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^selectBlock)(NSString * name);
+
+
 @interface faceView : UIView
 {
 @private
@@ -19,5 +22,10 @@
 
 @property(nonatomic,copy)NSString * selectImageName;
 
+@property(nonatomic,assign)NSInteger * pagecount;
+
+@property(nonatomic,copy)NSString * selecttitle;
+
+@property(nonatomic,copy)selectBlock block;
 
 @end

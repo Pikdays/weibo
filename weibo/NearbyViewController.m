@@ -9,7 +9,7 @@
 #import "NearbyViewController.h"
 #import "UIImageView+WebCache.h"
 #import "UiFactory.h"
-
+#import "NetRequest.h"
 @interface NearbyViewController ()
 
 @end
@@ -119,28 +119,39 @@
         NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%f",lat],@"lat", [NSString stringWithFormat:@"%f",longitude],@"long",nil];
         
         
-          [self.sinaweibo requestWithTAG:@"place/nearby/pois.json" params:params httpMethod:@"GET" tag:@"100" delegate:self];
+        [NetRequest requestWithBlock:@"place/nearby/pois.json" httpMethod:@"GET" params:params completeBlock:^(id result) {
+            [ super showhud_custom:@"加载完成"];
+            
+            
+            self.data=[result objectForKey:@"pois"];
+            
+            self.tableView.hidden=NO;
+            
+            [self.tableView reloadData];
+            
+        }];
+        
+        
+//          [self.sinaweibo requestWithTAG:@"place/nearby/pois.json" params:params httpMethod:@"GET" tag:@"100" delegate:self];
         
         [super showhud];
     }
-    NSLog(@"hello");
+    
     
 }
-- (void)request:(SinaWeiboRequest *)_request didFinishLoadingWithResult:(id)result
-{
-     [ super showhud_custom:@"加载完成"];
-    
-     NSLog(@"%@",result);
-    
-    
-        self.data=[result objectForKey:@"pois"];
-        
-        self.tableView.hidden=NO;
-        
-        [self.tableView reloadData];
-
-    
-}
+//- (void)request:(SinaWeiboRequest *)_request didFinishLoadingWithResult:(id)result
+//{
+//     [ super showhud_custom:@"加载完成"];
+//    
+//    
+//        self.data=[result objectForKey:@"pois"];
+//        
+//        self.tableView.hidden=NO;
+//        
+//        [self.tableView reloadData];
+//
+//    
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

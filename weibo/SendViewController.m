@@ -10,6 +10,8 @@
 #import "UiFactory.h"
 #import "NearbyViewController.h"
 #import "BaseNavigationController.h"
+
+#import "NetRequest.h"
 @interface SendViewController ()
 
 @end
@@ -23,10 +25,11 @@
 
         self.title=@"发布微博";
         
+        
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showkeyboard:) name:UIKeyboardWillShowNotification object:nil];
         self.isBackButton=NO;
         self.isCancelButton=YES;
- 
+        
     
     }
     return self;
@@ -104,6 +107,8 @@
         if (i==5) {
             but.hidden=YES;
             but.frame=CGRectMake(20+(64*4), 30, 23, 19);
+            
+            [but addTarget:self action:@selector(showkeyboard) forControlEvents:UIControlEventTouchUpInside];
 
         }
         
@@ -113,7 +118,7 @@
 }
 //toolView按钮点击
 -(void)toolckick:(UIButton*)button{
-    
+//    NSLog(@"%d",button.tag);
     if(button.tag==10){
     
         NearbyViewController * near=[[NearbyViewController alloc]init];
@@ -152,8 +157,94 @@
         [self selectImage];
     
     }
+    
+    else if (button.tag==14)
+    {
+        [self showfaceview];
+    }
 
 
+
+}
+
+-(void)showfaceview
+{
+
+    [_textView resignFirstResponder];
+    
+    if(_face==nil)
+    {
+       
+        //注意block不要重复调用
+        _face=[[faceScrollView alloc]initWithSelectBlock:^(NSString *name) {
+           
+            
+       _textView.text=[_textView.text stringByAppendingString:name];
+        
+            
+        }];
+        
+            
+            
+        
+        _face.top=ScreenHeight-20-44-_face.height;
+        
+        _face.transform=CGAffineTransformTranslate(_face.transform, 0, ScreenHeight-20-44);
+        
+        [self.view addSubview:_face];
+    }
+    
+    UIButton * facebutton=[_butarray objectAtIndex:4];
+    UIButton * keyboardbutton=[_butarray objectAtIndex:5];
+    
+    facebutton.alpha=1;
+    keyboardbutton.alpha=0;
+    keyboardbutton.hidden=NO;
+    [UIView animateWithDuration:0.3 animations:^{
+    
+        _face.transform=CGAffineTransformIdentity;
+        facebutton.alpha=0;
+        
+        //调整高度
+        self.toolView.bottom=ScreenHeight-_face.height-20-44;
+        
+        
+        self.textView.height=self.toolView.top;
+    
+    } completion:^(BOOL finished){
+    
+        [UIView animateWithDuration:0.3 animations:^{
+        
+            keyboardbutton.alpha=1;
+        }];
+    
+        
+    }];
+ }
+
+-(void)showkeyboard
+{
+    [_textView becomeFirstResponder] ;
+    UIButton * facebutton=[_butarray objectAtIndex:4];
+    UIButton * keyboardbutton=[_butarray objectAtIndex:5];
+    
+    facebutton.alpha=0;
+    keyboardbutton.alpha=1;
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        _face.transform=CGAffineTransformTranslate(_face.transform, 0, ScreenHeight-20-44);
+        
+        keyboardbutton.alpha=0;
+        
+    } completion:^(BOOL finished){
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+                facebutton.alpha=1;
+
+        }];
+        
+    }];
 }
 
 -(void)selectImage
@@ -164,6 +255,16 @@
     [as showInView: self.view];
 
 }
+#pragma  mark UITextViewDelegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [self showkeyboard];
+    return YES;
+
+}
+
+
 #pragma  mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -358,13 +459,13 @@
 - (void)request:(SinaWeiboRequest *)_request didFinishLoadingWithResult:(id)result
 {
 
-    if ([_request.tag intValue]==100) {
-
-        [super showStatusView:NO title:@"发送成功"];
-
-        [self disView];
- 
-    }
+//    if ([_request.tag intValue]==100) {
+//
+//        [super showStatusView:NO title:@"发送成功"];
+//
+//        [self disView];
+// 
+//    }
 
 }
 
@@ -396,15 +497,40 @@
             
             //不带图
             if (_photoimage == nil) {
-                  [self.sinaweibo requestWithTAG:@"statuses/update.json" params:params httpMethod:@"POST" tag:@"100" delegate:self];
+                
+                [NetRequest requestWithBlock:@"statuses/update.json" httpMethod:@"POST"  params:params completeBlock:^(id result) {
+                   
+                    [super showStatusView:NO title:@"发送成功"];
+                    
+                    [self disView];
+                    
+                    
+                }];
+                
+                
+                
+//                  [self.sinaweibo requestWithTAG:@"statuses/update.json" params:params httpMethod:@"POST" tag:@"100" delegate:self];
+                
             }else{
                 
                 NSData *imagedata=UIImageJPEGRepresentation(_photoimage, 0.3);
                 
                 [params setObject:imagedata forKey:@"pic"];
                 
+                [NetRequest requestWithBlock:@"statuses/upload.json" httpMethod:@"POST"  params:params completeBlock:^(id result) {
+                    
+                    [super showStatusView:NO title:@"发送成功"];
+                    
+                    [self disView];
+                    
+                    
+                }];
+
+                
+                
+                
             //带图
-                  [self.sinaweibo requestWithTAG:@"statuses/upload.json" params:params httpMethod:@"POST" tag:@"100" delegate:self];
+//                  [self.sinaweibo requestWithTAG:@"statuses/upload.json" params:params httpMethod:@"POST" tag:@"100" delegate:self];
             
             }
             
