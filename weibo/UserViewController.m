@@ -86,7 +86,7 @@
         
      
         //记忆的天空699 威什么要名字呢
-        NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:@"记忆的天空699" forKey:@"screen_name"];
+        NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:@"威什么要名字呢" forKey:@"screen_name"];
         
         [params setObject:WeiboSize forKey:@"count"];
         

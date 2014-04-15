@@ -10,9 +10,14 @@
 #import "UserModel.h"
 
 @interface UserGridView : UIView
-@property (weak, nonatomic) IBOutlet UIImageView *UserImage;
-@property (weak, nonatomic) IBOutlet UILabel *nickName;
-@property (weak, nonatomic) IBOutlet UILabel *fansNum;
+
+
+@property(nonatomic,retain)UILabel * fansNum;
+
+@property(nonatomic,retain)UILabel * nickName;
+
+@property (retain, nonatomic) UIImageView *UserImage;
+
 
 @property(nonatomic,retain)UserModel * model;
 

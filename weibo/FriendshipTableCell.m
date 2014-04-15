@@ -24,7 +24,6 @@
 -(void)initView
 {
     
-
     //不能用_data.count
     for (int i=0; i<3; i++) {
         
@@ -43,22 +42,26 @@
 -(void)layoutSubviews
 {
 
+//    NSLog(@"_data.count%d",_data.count);
     
-    for (int i=0; i<_data.count; i++) {
-        
-        UserModel * model=[self.data objectAtIndex:i];
-        
-        int tag=100+i;
-        
 
+    for (int i=0; i<3; i++) {
         
-        UserGridView * userGridView=(UserGridView *)[self.contentView viewWithTag:tag];
+        UserGridView * userGridView=(UserGridView *)[self.contentView viewWithTag:(100+i)];
         
-        userGridView.frame= CGRectMake(100*i, 10, 96, 96);
+        userGridView.frame= CGRectMake(100*i+11, 10, 95, 95);
         
-        userGridView.model=model;
+        if (i<_data.count) {
+            
+            UserModel * model=[self.data objectAtIndex:i];
 
-
+            userGridView.model=model;
+        }else{
+        
+           userGridView.hidden=YES;
+        
+        }
+        
     }
 
 }

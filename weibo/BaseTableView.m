@@ -64,7 +64,6 @@
 {
     [super reloadData];
     [self stopload];
-
 }
 
 -(void)stopload{

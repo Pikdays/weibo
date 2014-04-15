@@ -2,8 +2,8 @@
 //  UserGridView.m
 //  weibo
 //
-//  Created by laijiawei on 14-4-14.
-//  Copyright (c) 2014年 laijiawei. All rights reserved.
+//  Created by laijiawei on 4-4-4.
+//  Copyright (c) 204年 laijiawei. All rights reserved.
 //
 
 #import "UserGridView.h"
@@ -16,17 +16,50 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        UIView * view=[[[NSBundle mainBundle]loadNibNamed:@"UserGridView" owner:self options:nil]lastObject];
         
-        self.size=view.size;
-        
-        [self addSubview:view];
         //背景
+        self.frame=CGRectMake(0, 0, 95, 95);
+        
+       
+        _UserImage=[[UIImageView alloc]initWithFrame:CGRectMake(20, 9, 55, 55)];
+        
+        
+        [self addSubview:_UserImage];
+        
+        
+        _nickName=[[UILabel alloc]initWithFrame:CGRectMake(20, 62, 55, 17)];
+        
+        _nickName.font=[UIFont systemFontOfSize:12.0f];
+        
+        _nickName.textAlignment=NSTextAlignmentCenter;
+
+        _nickName.backgroundColor=[UIColor clearColor];
+
+
+        
+         [self addSubview:_nickName];
+        
+        
+        _fansNum=[[UILabel alloc]initWithFrame:CGRectMake(20, 80, 55, 10)];
+        
+        _fansNum.textColor=[UIColor blueColor];
+        
+        _fansNum.textAlignment=NSTextAlignmentCenter;
+        
+        _fansNum.font=[UIFont systemFontOfSize:12.0f];
+        
+        _fansNum.backgroundColor=[UIColor clearColor];
+
+        
+        [self addSubview:_fansNum];
+        
         
         UIImageView * backView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"profile_button3_1.png"]];
         
+        backView.frame=self.frame;
+        
         [self insertSubview:backView atIndex:0];
-
+        
     }
     return self;
 }
@@ -34,8 +67,6 @@
 //展示数据
 -(void)layoutSubviews
 {
-    
-    
     //先调用父类的方法
     [super layoutSubviews];
     
@@ -44,6 +75,7 @@
     if (imagePath !=nil && ![@"" isEqualToString:imagePath]) {
         
         _UserImage.image=[UIImage imageNamed:imagePath];
+        
         
         [_UserImage setImageWithURL:[NSURL URLWithString:imagePath]];
         
@@ -59,7 +91,7 @@
     [_UserImage addGestureRecognizer:singleTap];
     
     
-    _nickName.text=_model.screen_name;
+    self.nickName.text=_model.screen_name;
     
     long f=[_model.followers_count longValue];
 
@@ -68,7 +100,10 @@
     
     if (f>=10000)  fans=[NSString stringWithFormat:@"%ld万",f/10000];
     
-    _fansNum.text=fans;
+    
+    self.fansNum.text=fans;
+    
+
 }
 
 -(void)gotoUserinfo

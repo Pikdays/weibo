@@ -36,12 +36,12 @@
     
     if (_uid!=nil&&_uid.length>0){
         
-       // NSMutableDictionary *  params=[NSMutableDictionary dictionaryWithObject:_uid forKey:@"uid"];
+        NSMutableDictionary *  params=[NSMutableDictionary dictionaryWithObject:_uid forKey:@"uid"];
         
-        NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:@"记忆的天空699" forKey:@"screen_name"];
+     //   NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:@"记忆的天空699" forKey:@"screen_name"];
 
         
-        [params setObject:@"1" forKey:@"count"];
+       [params setObject:@"11" forKey:@"count"];
         
         [NetRequest requestWithBlock:@"friendships/friends.json" httpMethod:@"GET" params:params completeBlock:^(id result) {
             
@@ -63,7 +63,6 @@
     
     NSMutableArray *array2D=nil;
     
-    
     for (int i=0; i<users.count; i++) {
         
         if (i%3==0) {
@@ -71,7 +70,6 @@
             array2D=[NSMutableArray arrayWithCapacity:3];
             
             [self.data addObject:array2D];
-
         }
         
         
@@ -81,9 +79,12 @@
         
 
         [array2D addObject:userModel];
+        
+        
 
     }
-    
+
+
     _tableView.data=self.data;
     
     [_tableView reloadData];

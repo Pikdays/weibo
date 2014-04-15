@@ -23,15 +23,13 @@
         
         cell=[[FriendshipTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] ;
         
-        
-    }
-    
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
 
-    
+    }
     
     cell.data=[self.data objectAtIndex:indexPath.row];
     
+        
     
     return cell;
     
