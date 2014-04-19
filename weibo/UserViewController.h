@@ -19,7 +19,8 @@
 
 @property(nonatomic,retain) UserinfoView * userinfoView;
 
-@property(nonatomic,copy) NSString * userName;
+@property(nonatomic,copy) NSString * userId;
+
 
 @property(nonatomic,copy)NSString * topId;     //最大的id
 

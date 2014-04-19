@@ -32,7 +32,8 @@
 -(void)gotoUserinfo
 {
     UserViewController * view=[[UserViewController alloc]init];
-    view.userName=_weiboModel.user.screen_name;
+    view.userId=_weiboModel.user.idstr;
+
     [self.viewController.navigationController pushViewController:view animated:YES];
     
 }

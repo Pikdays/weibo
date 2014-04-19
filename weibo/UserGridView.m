@@ -109,7 +109,9 @@
 -(void)gotoUserinfo
 {
     UserViewController * view=[[UserViewController alloc]init];
-    view.userName=_model.screen_name;
+        
+    view.userId=_model.idstr;
+    
     [self.viewController.navigationController pushViewController:view animated:YES];
     
 }

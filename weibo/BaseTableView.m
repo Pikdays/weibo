@@ -162,7 +162,6 @@
 }
 
 - (void)doneLoadingTableViewData{
-    
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self];
     

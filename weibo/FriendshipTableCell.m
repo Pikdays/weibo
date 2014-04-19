@@ -38,29 +38,37 @@
 
 
 }
-
--(void)layoutSubviews
+-(void)setData:(NSArray *)data
 {
-
-//    NSLog(@"_data.count%d",_data.count);
-    
+    _data=data;
 
     for (int i=0; i<3; i++) {
+        
+      UserGridView * userGridView=(UserGridView *)[self.contentView viewWithTag:(100+i)];
+        
+       userGridView.hidden=YES;
+        
+    }
+}
+-(void)layoutSubviews
+{
+    
+    for (int i=0; i<self.data.count; i++) {
         
         UserGridView * userGridView=(UserGridView *)[self.contentView viewWithTag:(100+i)];
         
         userGridView.frame= CGRectMake(100*i+11, 10, 95, 95);
         
-        if (i<_data.count) {
-            
-            UserModel * model=[self.data objectAtIndex:i];
+        
+        UserModel * model=[self.data objectAtIndex:i];
+        
+        userGridView.model=model;
+        
+        userGridView.hidden=NO;
 
-            userGridView.model=model;
-        }else{
         
-           userGridView.hidden=YES;
-        
-        }
+        //解决cell复用的问题，让cell刷新视图
+        [userGridView setNeedsLayout];
         
     }
 

@@ -16,6 +16,7 @@
     
     static NSString * cellid=@"celleid";
     
+
     FriendshipTableCell * cell=[tableView dequeueReusableCellWithIdentifier:cellid];
     
     
@@ -23,7 +24,7 @@
         
         cell=[[FriendshipTableCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] ;
         
-        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+      cell.selectionStyle=UITableViewCellSelectionStyleNone;
 
     }
     

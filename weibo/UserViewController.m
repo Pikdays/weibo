@@ -79,14 +79,17 @@
 
     //100 正常  101下拉刷新  102更多
     
-    if (_userName!=nil&&_userName.length>0) {
+    if (_userId!=nil&&_userId.length>0) {
         
         //接口升级之后不能获取别的用户
-        //NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:_userName forKey:@"screen_name"];
+        //NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:_userId forKey:@"screen_name"];
         
      
         //记忆的天空699 威什么要名字呢
-        NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:@"威什么要名字呢" forKey:@"screen_name"];
+//        NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:@"威什么要名字呢" forKey:@"screen_name"];
+        
+      NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:@"2078894751" forKey:@"uid"];
+        
         
         [params setObject:WeiboSize forKey:@"count"];
         
@@ -119,11 +122,10 @@
 -(void)loadUserinfo
 {
 
-    if (_userName!=nil&&_userName.length>0) {
+    if (_userId!=nil&&_userId.length>0 ) {
         
-        NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:_userName forKey:@"screen_name"];
-        
-        
+       NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:_userId forKey:@"uid"];
+
         if(self.sinaweibo.isAuthValid){
             
             
@@ -131,10 +133,6 @@
              [self.requests addObject:request];
         }
     }
- 
-    
-
-
 }
 //网络加载失败
 - (void)request:(SinaWeiboRequest *)_request didFailWithError:(NSError *)error

@@ -8,11 +8,11 @@
 
 #import "MainViewController.h"
 #import "MessageViewController.h"
-#import "ProfileViewController.h"
 #import "DiscoverViewController.h"
 #import "MoreViewController.h"
 #import "BaseNavigationController.h"
 #import "UiFactory.h"
+#import "UserViewController.h"
 #import "MYAppDelegate.h"
 #import "UiFactory.h"
 
@@ -53,12 +53,17 @@
 
      HomeViewController * home=[[HomeViewController alloc]init];
      MessageViewController * message=[[MessageViewController alloc]init];
-     ProfileViewController * profile=[[ProfileViewController alloc]init];
+     UserViewController * user=[[UserViewController alloc]init];
      DiscoverViewController * discover=[[DiscoverViewController alloc]init];
      MoreViewController * more=[[MoreViewController alloc]init];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *sinaweiboInfo = [defaults objectForKey:@"SinaWeiboAuthData"];
     
-    _views=@[home,message,profile,discover,more];
+    user.userId=[sinaweiboInfo objectForKey:@"UserIDKey"];
+    
+    
+    _views=@[home,message,user,discover,more];
     
     NSMutableArray * viewControllers=[NSMutableArray arrayWithCapacity:5];
     

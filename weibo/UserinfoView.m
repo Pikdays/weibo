@@ -87,8 +87,16 @@
 
 -(void)fansclick:(UIButton *)button
 {
-
-    NSLog(@"fan");
+    
+    FriendshipViewController *ctrl=[[FriendshipViewController alloc]init];
+    
+    ctrl.type=Fans;
+    
+    //    ctrl.uid=_userModel.idstr;
+    
+    ctrl.uid=@"2078894751";
+    
+    [self.viewController.navigationController pushViewController:ctrl animated:YES];
 
 }
 
@@ -97,6 +105,7 @@
     
     FriendshipViewController *ctrl=[[FriendshipViewController alloc]init];
     
+    ctrl.type=Att;
     
 //    ctrl.uid=_userModel.idstr;
     
