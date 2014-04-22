@@ -45,6 +45,8 @@
     
      _data=[NSMutableArray array];
     
+    _isload=YES;
+    
     [self loadfriend];
     
 }
@@ -70,7 +72,7 @@
             
         }
         
-//        [self showhud];
+        if (_isload) [self showhud];
         
         NSMutableDictionary *  params=[NSMutableDictionary dictionaryWithObject:_uid forKey:@"uid"];
         
@@ -80,6 +82,8 @@
         
         [NetRequest requestWithBlock:url httpMethod:@"GET" params:params completeBlock:^(id result) {
             
+             if (_isload)    [ self showhud_custom:@"加载完成"];
+
             [self loaddatafinish:result];
             
         }];
@@ -94,7 +98,6 @@
 -(void)loaddatafinish:(id)result
 {
 
-//    [ self showhud_custom:@"加载完成"];
 
 
     
@@ -151,6 +154,7 @@
 //下拉刷新
 -(void)pullDown:(BaseTableView *)tableView
 {
+    _isload=NO;
 
     self.next_cursor=nil;
     
@@ -163,6 +167,8 @@
 //加载更多
 -(void)pullUp:(BaseTableView *)tableView
 {
+
+    _isload=NO;
 
     [self loadfriend];
     

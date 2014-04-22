@@ -24,6 +24,9 @@ typedef NS_ENUM(NSInteger,friendtype ) {
 
 @property(nonatomic,assign)friendtype * type;
 
+@property(nonatomic,assign)BOOL * isload;
+
+
 @property(nonatomic,retain) FriendshipTableView *tableView;
 
 

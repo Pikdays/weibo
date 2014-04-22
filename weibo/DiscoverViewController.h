@@ -9,5 +9,9 @@
 #import "BaseViewController.h"
 
 @interface DiscoverViewController : BaseViewController
+@property (weak, nonatomic) IBOutlet UIButton *nearweibo;
+- (IBAction)nearweibo_click:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *nearperson;
+- (IBAction)nearperson_click:(UIButton *)sender;
 
 @end
