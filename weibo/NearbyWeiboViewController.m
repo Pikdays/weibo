@@ -11,6 +11,7 @@
 #import "WeiboModel.h"
 #import "WeiboAnnotation.h"
 #import "WeiboAnnotationView.h"
+#import "DetailViewController.h"
 @interface NearbyWeiboViewController ()
 
 @end
@@ -124,6 +125,25 @@
     return view;
 
 }
+
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+
+    WeiboAnnotation * an=view.annotation;
+    
+    WeiboModel * model=an.model;
+    
+    DetailViewController * detail=[[DetailViewController alloc]init];
+    
+    detail.weiboModel=model;
+    
+    [self.navigationController pushViewController:detail animated:YES];
+    
+}
+
+
+
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
 {
     for (UIView * view in views) {

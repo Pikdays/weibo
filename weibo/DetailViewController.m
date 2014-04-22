@@ -33,14 +33,31 @@
 - (void)viewDidLoad
 {
     
-    NSLog(@"lastid%@",[_weiboModel.weiboId stringValue]);
+//    NSLog(@"lastid%@",[_weiboModel.weiboId stringValue]);
+    
+    
     [super viewDidLoad];
     
     [self _initView];
     
     NSMutableDictionary * params=[NSMutableDictionary dictionaryWithObject:WeiboSize forKey:@"count"];
     
-    [params setObject:[_weiboModel.weiboId stringValue] forKey:@"id"];
+    //附近的微博访问微博详情有问题
+    
+    NSString * weiboId=nil;
+    
+    if ([_weiboModel.weiboId isKindOfClass:[NSNumber class]]) {
+        
+      weiboId=[_weiboModel.weiboId stringValue];
+
+    }else{
+    
+        weiboId=_weiboModel.weiboId;
+        
+    }
+    
+    
+    [params setObject:weiboId forKey:@"id"];
     
     [self loaddata:params];
     
@@ -129,18 +146,18 @@
         [cs addObject:comment];
         
     }
-    
-    if (comments!=nil&&comments.count>0) {
-        
-        CommentModel *top_weibo =[cs objectAtIndex:0];
-        
-        self.topId=[top_weibo.id stringValue];
-        
-        CommentModel *down_weibo =[cs objectAtIndex:comments.count-1];
-        
-        self.downId=[down_weibo.id stringValue];
-        
-    }
+//    
+//    if (comments!=nil&&comments.count>0) {
+//        
+//        CommentModel *top_weibo =[cs objectAtIndex:0];
+//        
+//        self.topId=[top_weibo.id stringValue];
+//        
+//        CommentModel *down_weibo =[cs objectAtIndex:comments.count-1];
+//        
+//        self.downId=[down_weibo.id stringValue];
+//        
+//    }
     
     NSLog(@"comments.count %d",comments.count);
     

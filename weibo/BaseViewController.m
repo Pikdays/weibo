@@ -80,8 +80,8 @@
 //点击返回按钮
 -(void)back:(UIButton *) button
 {
-    
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

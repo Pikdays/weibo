@@ -68,6 +68,8 @@
     [super layoutSubviews];
     
     WeiboAnnotation * an=self.annotation;
+    
+    
     if ([an isKindOfClass:[WeiboAnnotation class]]) {
         
         WeiboModel * model=an.model;
@@ -101,9 +103,6 @@
             //考虑复用
             weiboImageView.hidden=YES;
             label.hidden=NO;
-            NSLog(@"ok");
-
-
         }
         
     }

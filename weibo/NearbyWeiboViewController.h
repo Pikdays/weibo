@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-@interface NearbyWeiboViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate>
+#import "BaseViewController.h"
+@interface NearbyWeiboViewController : BaseViewController<CLLocationManagerDelegate,MKMapViewDelegate>
 
 @property(nonatomic,retain) CLLocationManager *locManager ;
 
