@@ -4,7 +4,8 @@
 //  main.m
 //  weibo
 //
-//  Created by laijiawei on 14-3-15.
+p
+//  Created by laijiawei on 14-06-15.
 //  Copyright (c) 2014年 laijiawei. All rights reserved.
 //
 
