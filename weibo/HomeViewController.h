@@ -16,6 +16,8 @@
 
 
     ThemeImageView * barView;
+    
+    UILabel * Name;
 
 }
 

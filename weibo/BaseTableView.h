@@ -20,6 +20,10 @@
 
 - (void)gotoDetail:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;  //选中
 
+-(void)SwipeDown:(BaseTableView *)tableView; //向下滑动
+
+-(void)SwipeUp:(BaseTableView *)tableView;  //向上滑动
+
 @end
 
 
@@ -46,7 +50,7 @@
 
 @property(nonatomic,retain)NSArray * data;   //数据源
 
-
+@property(nonatomic,assign)float lastContentOffset;   //每次滑动的距离
 
 @property(nonatomic,assign) id<UITableViewEventDelegate>  eventDelegate;
 

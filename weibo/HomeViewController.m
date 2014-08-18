@@ -32,10 +32,7 @@
 {
     
     [super viewDidLoad];
-    
-
-
-    
+            
     //绑定按钮
     UIBarButtonItem *bindItem = [[UIBarButtonItem alloc] initWithTitle:@"绑定账号" style:UIBarButtonItemStyleBordered target:self action:@selector(bindAction:)];
     self.navigationItem.rightBarButtonItem = [bindItem autorelease];
@@ -53,6 +50,16 @@
     
     [self.view addSubview:self.tableView];
     
+    Name=[[UILabel alloc] init];
+    Name.frame=CGRectMake(12, 0, 200, 30);
+    Name.backgroundColor=[UIColor clearColor];
+    Name.textColor=[UIColor blackColor];
+    Name.font=[UIFont fontWithName:@"Helvetica-Bold" size:14];
+    Name.text=@"为什么要名字呢";
+    Name.hidden=YES;
+
+    [self.view addSubview:Name];
+    
     
     _tableView.hidden=YES;
 
@@ -67,8 +74,6 @@
     
         [self bindAction:nil];
     }
-
-    
     
 }
 
@@ -391,6 +396,22 @@
     
 
 }
+//向下滑动
+
+-(void)SwipeDown:(BaseTableView *)tableView
+{
+    
+//    Name.hidden=NO;
+
+}
+//向上滑动
+-(void)SwipeUp:(BaseTableView *)tableView
+{
+   
+//    Name.hidden=YES;
+
+}
+
 
 - (void)gotoDetail:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

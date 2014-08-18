@@ -27,6 +27,7 @@
 }
 -(void)initView
 {
+    
 	 _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.bounds.size.height, self.frame.size.width, self.bounds.size.height)];
     _refreshHeaderView.backgroundColor=[UIColor clearColor];
     
@@ -246,4 +247,36 @@
     [_refreshHeaderView initLoading:self];
     
 }
+
+//判断滑动方向
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if (scrollView. contentOffset.y < _lastContentOffset )
+    {
+       
+        if ([self.eventDelegate respondsToSelector:@selector(SwipeDown:)]) {
+            
+            [self.eventDelegate SwipeDown:self];
+            
+        }
+        
+    } else if (scrollView. contentOffset.y > _lastContentOffset )
+    {
+      
+        if ([self.eventDelegate respondsToSelector:@selector(SwipeUp:)]) {
+            
+            [self.eventDelegate SwipeUp:self];
+            
+        }
+    }
+    
+}
+//判断滑动方向
+-(void)scrollViewWillBeginDragging:(UIScrollView*)scrollView{
+    _lastContentOffset = scrollView.contentOffset.y;
+}
+
+
+
+
 @end
